@@ -2,11 +2,11 @@ using Violet.Pages;
 
 namespace Violet.ViewModels;
 
-public class CalendarViewModel : ViewModelBase
+public partial class CalendarViewModel : ViewModelBase
 {
-	private readonly TasksPage _tasksPage;
+	private readonly TasksComposer _tasksPage;
 
-	public CalendarViewModel(TasksPage tasksPage)
+	public CalendarViewModel(TasksComposer tasksPage)
 	{
 		_tasksPage = tasksPage;
 	}

@@ -4,13 +4,19 @@ using Violet.Models;
 
 namespace Violet.Pages;
 
-public class TasksPage : PageBase
+public class TasksComposer : ComposerBase
 {
 	public List<Task> tasks;
 
 
-	public TasksPage()
+	public TasksComposer()
 	{
 		tasks = [new Task("boop", DateTime.Now, TimeSpan.FromHours(5))];
+	}
+
+
+	public void DeleteTask(Task task)
+	{
+		tasks.Remove(task);
 	}
 }

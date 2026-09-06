@@ -1,13 +1,22 @@
+using System.Collections.ObjectModel;
+using System.Linq;
 using Violet.Pages;
 
 namespace Violet.ViewModels;
 
-public class TasksViewModel : ViewModelBase
+public partial class TasksViewModel : ViewModelBase
 {
-	private readonly TasksPage _tasksPage;
+	private readonly TasksComposer _tasksPage;
+	
+	public ObservableCollection<TaskViewModel> TaskList { get; }
 
-	public TasksViewModel(TasksPage tasksPage)
+
+	public TasksViewModel(TasksComposer tasksPage)
 	{
 		_tasksPage = tasksPage;
+		
+		TaskList = new ObservableCollection<TaskViewModel>(
+            _tasksPage.tasks.Select(x => new TaskViewModel(x))
+        );
 	}
 }

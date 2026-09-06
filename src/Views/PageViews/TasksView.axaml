@@ -1,8 +1,9 @@
 <UserControl
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:components="using:Violet.Views.Components"
+	xmlns:vm="using:Violet.ViewModels"
 	x:Class="Violet.Views.PageViews.TasksView"
+	x:DataType="vm:TasksViewModel"
 	VerticalAlignment="Stretch"
 	HorizontalAlignment="Stretch"
 	Margin="25"
@@ -23,9 +24,7 @@
 			<TextBox Grid.Column="1" Grid.Row="1">0</TextBox>
 		</Grid>
 
-		<components:TaskCard />
-		<components:TaskCard />
-		<components:TaskCard />
+		<ItemsControl ItemsSource="{Binding TaskList}" />
 
     </StackPanel>
 		
