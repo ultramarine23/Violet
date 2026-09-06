@@ -7,11 +7,9 @@
 >
 	
     <Border
-        Background="{DynamicResource MidgroundBrush}"
-        Padding="16"
+    Background="{DynamicResource MidgroundBrush}"
+    Padding="16"
 	>
-	
-
-
+		<!-- add sidebar stuffies here! -->
     </Border>
 </UserControl>

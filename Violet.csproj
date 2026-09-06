@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Pages\" />
     <Folder Include="Coordinators\" />
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>

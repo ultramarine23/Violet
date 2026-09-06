@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace Violet.Views.Pages;
+namespace Violet.Views.PageViews;
 
 public partial class TasksView : UserControl
 {

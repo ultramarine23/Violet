@@ -3,8 +3,8 @@
         xmlns:vm="using:Violet.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:pageviews="using:Violet.Views.PageViews"
         xmlns:components="using:Violet.Views.Components"
-        xmlns:pages="using:Violet.Views.Pages"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Violet.Views.MainWindow"
         x:DataType="vm:MainViewModel"
@@ -18,6 +18,14 @@
         <vm:MainViewModel />
     </Design.DataContext>
 
+    <Window.DataTemplates>
+
+        <DataTemplate DataType="vm:TasksViewModel">
+            <pageviews:TasksView />
+        </DataTemplate>
+
+    </Window.DataTemplates>
+
     
     <Grid ColumnDefinitions="* 11*" RowDefinitions="*">
         <components:SidebarView 
@@ -25,8 +33,9 @@
             Grid.Row="0"
         />
 
-        <pages:TasksView 
-            Grid.Column="1" 
+        <ContentControl 
+            Content="{Binding CurrentPage}"
+            Grid.Column="1"
             Grid.Row="0"
         />
     </Grid>
