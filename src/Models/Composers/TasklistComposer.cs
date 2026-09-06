@@ -4,12 +4,12 @@ using Violet.Models;
 
 namespace Violet.Pages;
 
-public class TasksComposer : ComposerBase
+public class TasklistComposer : ComposerBase
 {
 	public List<Task> tasks;
 
 
-	public TasksComposer()
+	public TasklistComposer()
 	{
 		tasks = [new Task("boop", DateTime.Now, TimeSpan.FromHours(5))];
 	}

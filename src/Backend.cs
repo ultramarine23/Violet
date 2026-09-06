@@ -3,13 +3,13 @@ using Violet.Pages;
 
 public class Backend
 {
-    public TasksComposer Tasks { get; }
+    public TasklistComposer Tasklist { get; }
 	public ComposerBase CurrentPage { get; set; }
 
     public Backend()
     {
-        Tasks = new TasksComposer();
+        Tasklist = new TasklistComposer();
 
-		CurrentPage = Tasks;
+		CurrentPage = Tasklist;
     } 
 }

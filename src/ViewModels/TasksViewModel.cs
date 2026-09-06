@@ -4,14 +4,14 @@ using Violet.Pages;
 
 namespace Violet.ViewModels;
 
-public partial class TasksViewModel : ViewModelBase
+public partial class TasklistViewModel : ViewModelBase
 {
-	private readonly TasksComposer _tasksPage;
+	private readonly TasklistComposer _tasksPage;
 	
 	public ObservableCollection<TaskViewModel> TaskList { get; }
 
 
-	public TasksViewModel(TasksComposer tasksPage)
+	public TasklistViewModel(TasklistComposer tasksPage)
 	{
 		_tasksPage = tasksPage;
 		

@@ -25,7 +25,7 @@ public partial class App : Application
     {        
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            TasksViewModel tasksVM = new TasksViewModel(Backend.Tasks);
+            TasklistViewModel tasksVM = new TasklistViewModel(Backend.Tasklist);
             
             desktop.MainWindow = new MainWindow
             {

@@ -2,9 +2,9 @@ using Avalonia.Controls;
 
 namespace Violet.Views;
 
-public partial class TasksView : UserControl
+public partial class TasklistView : UserControl
 {
-    public TasksView()
+    public TasklistView()
     {
         InitializeComponent();
     }

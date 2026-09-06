@@ -19,8 +19,8 @@
 
     <Window.DataTemplates>
 
-        <DataTemplate DataType="vm:TasksViewModel">
-            <views:TasksView />
+        <DataTemplate DataType="vm:TasklistViewModel">
+            <views:TasklistView />
         </DataTemplate>
 
     </Window.DataTemplates>

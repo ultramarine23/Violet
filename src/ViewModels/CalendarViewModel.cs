@@ -4,9 +4,9 @@ namespace Violet.ViewModels;
 
 public partial class CalendarViewModel : ViewModelBase
 {
-	private readonly TasksComposer _tasksPage;
+	private readonly CalendarComposer _tasksPage;
 
-	public CalendarViewModel(TasksComposer tasksPage)
+	public CalendarViewModel(CalendarComposer tasksPage)
 	{
 		_tasksPage = tasksPage;
 	}
