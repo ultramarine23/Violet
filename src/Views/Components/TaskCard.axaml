@@ -1,7 +1,7 @@
 <UserControl
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	x:Class="Violet.Views.Components.TaskCard"
+	x:Class="Violet.Views.TaskCard"
 	VerticalAlignment="Stretch"
 	HorizontalAlignment="Stretch"
 >

@@ -3,8 +3,7 @@
         xmlns:vm="using:Violet.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:pageviews="using:Violet.Views.PageViews"
-        xmlns:components="using:Violet.Views.Components"
+        xmlns:views="using:Violet.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Violet.Views.MainWindow"
         x:DataType="vm:MainViewModel"
@@ -21,14 +20,14 @@
     <Window.DataTemplates>
 
         <DataTemplate DataType="vm:TasksViewModel">
-            <pageviews:TasksView />
+            <views:TasksView />
         </DataTemplate>
 
     </Window.DataTemplates>
 
     
     <Grid ColumnDefinitions="* 11*" RowDefinitions="*">
-        <components:SidebarView 
+        <views:SidebarView 
             Grid.Column="0" 
             Grid.Row="0"
         />

@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace Violet.Views.Components;
+namespace Violet.Views;
 
 public partial class TaskCard : UserControl
 {
