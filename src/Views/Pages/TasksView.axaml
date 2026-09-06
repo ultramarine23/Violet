@@ -2,13 +2,14 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:components="using:Violet.Views.Components"
-	x:Class="Violet.Views.Pages.TasksPage"
+	x:Class="Violet.Views.Pages.TasksView"
 	VerticalAlignment="Stretch"
 	HorizontalAlignment="Stretch"
+	Margin="25"
 >
-	<StackPanel>
+	<StackPanel Spacing="10">
 
-		<Border Margin="200,20" CornerRadius="10" 
+		<Border Padding="15" CornerRadius="10" 
 		Background="{DynamicResource MidgroundBrush}">
 			<TextBlock Classes="standardHeader" HorizontalAlignment="Center" Text="VIOLET" />
 		</Border>

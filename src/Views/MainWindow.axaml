@@ -3,6 +3,7 @@
         xmlns:vm="using:Violet.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:components="using:Violet.Views.Components"
         xmlns:pages="using:Violet.Views.Pages"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Violet.Views.MainWindow"
@@ -18,33 +19,16 @@
     </Design.DataContext>
 
     
-    <Grid Margin="15"
-    ColumnDefinitions="* * * *"
-    RowDefinitions="Auto"
-    >
-        <pages:TasksPage></pages:TasksPage>
+    <Grid ColumnDefinitions="* 11*" RowDefinitions="*">
+        <components:SidebarView 
+            Grid.Column="0" 
+            Grid.Row="0"
+        />
+
+        <pages:TasksView 
+            Grid.Column="1" 
+            Grid.Row="0"
+        />
     </Grid>
-    <!-- <StackPanel>
-        <Border Margin="200,20" CornerRadius="10" 
-        Background="{DynamicResource MidgroundBrush}">
-            <TextBlock Classes="standardHeader" HorizontalAlignment="Center" Text="VIOLET" />
-        </Border>
-
-        <Grid Margin="25 10" ColumnDefinitions="120, *, 2*"
-        RowDefinitions="Auto, Auto, Auto" RowSpacing="5">
-            <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">Celsius</TextBlock>
-            <TextBox Grid.Column="1" Grid.Row="0">0</TextBox>
-            <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">Fahrenheit</TextBlock>
-            <TextBox Grid.Column="1" Grid.Row="1">0</TextBox>
-
-            <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" Spacing="10">
-                <components:TaskCard />
-                <components:TaskCard />
-                <components:TaskCard />
-            </StackPanel>
-        </Grid>
-
-        <Button Classes="standardButton">Calculate</Button>
-    </StackPanel> -->
 
 </Window>

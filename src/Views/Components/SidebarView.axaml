@@ -1,0 +1,17 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="Violet.Views.Components.SidebarView"
+	VerticalAlignment="Stretch"
+	HorizontalAlignment="Stretch"
+>
+	
+    <Border
+        Background="{DynamicResource MidgroundBrush}"
+        Padding="16"
+	>
+	
+
+
+    </Border>
+</UserControl>
