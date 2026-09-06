@@ -1,0 +1,50 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Violet.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:pages="using:Violet.Views.Pages"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Violet.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Violet"
+        Background="{DynamicResource BackgroundBrush}">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainViewModel />
+    </Design.DataContext>
+
+    
+    <Grid Margin="15"
+    ColumnDefinitions="* * * *"
+    RowDefinitions="Auto"
+    >
+        <pages:TasksPage></pages:TasksPage>
+    </Grid>
+    <!-- <StackPanel>
+        <Border Margin="200,20" CornerRadius="10" 
+        Background="{DynamicResource MidgroundBrush}">
+            <TextBlock Classes="standardHeader" HorizontalAlignment="Center" Text="VIOLET" />
+        </Border>
+
+        <Grid Margin="25 10" ColumnDefinitions="120, *, 2*"
+        RowDefinitions="Auto, Auto, Auto" RowSpacing="5">
+            <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">Celsius</TextBlock>
+            <TextBox Grid.Column="1" Grid.Row="0">0</TextBox>
+            <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">Fahrenheit</TextBlock>
+            <TextBox Grid.Column="1" Grid.Row="1">0</TextBox>
+
+            <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" Spacing="10">
+                <components:TaskCard />
+                <components:TaskCard />
+                <components:TaskCard />
+            </StackPanel>
+        </Grid>
+
+        <Button Classes="standardButton">Calculate</Button>
+    </StackPanel> -->
+
+</Window>

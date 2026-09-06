@@ -1,0 +1,27 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="Violet.Views.Components.TaskCard"
+	VerticalAlignment="Stretch"
+	HorizontalAlignment="Stretch"
+>
+	
+    <Border
+        Background="{DynamicResource MidgroundBrush}"
+        CornerRadius="4"
+        Padding="16"
+	>
+
+        <CheckBox>
+			<StackPanel VerticalAlignment="Center" Spacing="0">
+				<Border Classes="bodyContainer">
+					<TextBlock Classes="standardBody" Text="My Card" />
+				</Border>
+				<Border Classes="bodyContainer">
+					<TextBlock Classes="standardBody" Text="due in 3 days" />
+				</Border>
+        	</StackPanel>
+		</CheckBox>
+
+    </Border>
+</UserControl>

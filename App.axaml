@@ -1,0 +1,97 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Violet.App"
+             xmlns:local="using:Violet"
+             RequestedThemeVariant="Dark">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+
+    <Application.Resources>
+        <!-- Color Variables -->
+        <Color x:Key="Background">#29262f</Color>
+        <Color x:Key="Midground">#312d37</Color>
+        <Color x:Key="Elevated">#3c3744</Color>
+        <Color x:Key="PrimaryText">#d5d5d5</Color>
+        <Color x:Key="SecondaryText">#bebac4</Color>
+        <Color x:Key="AccentPressed">#573a72</Color>
+        <Color x:Key="Accent">#8758b3</Color>
+        <Color x:Key="AccentHover">#A867F2</Color>
+
+        <!-- Brush Variables -->
+        <SolidColorBrush x:Key="BackgroundBrush" Color="{DynamicResource Background}" />
+        <SolidColorBrush x:Key="MidgroundBrush" Color="{DynamicResource Midground}" />
+        <SolidColorBrush x:Key="ElevatedBrush" Color="{DynamicResource Elevated}" />
+        <SolidColorBrush x:Key="PrimaryTextBrush" Color="{DynamicResource PrimaryText}" />
+        <SolidColorBrush x:Key="SecondaryTextBrush" Color="{DynamicResource SecondaryText}" />
+        <SolidColorBrush x:Key="AccentPressedBrush" Color="{DynamicResource AccentPressed}" />
+        <SolidColorBrush x:Key="AccentBrush" Color="{DynamicResource Accent}" />
+        <SolidColorBrush x:Key="AccentHoverBrush" Color="{DynamicResource AccentHover}" />
+
+        <!-- Layout/Spacing Variables -->
+        <Thickness x:Key="StandardPadding">5, 0</Thickness>
+        <x:Double x:Key="BodyFont">12</x:Double>
+        <x:Double x:Key="H2Font">16</x:Double>
+        <x:Double x:Key="H1Font">20</x:Double>
+        <x:Double x:Key="TitleFont">32</x:Double>
+    </Application.Resources>
+
+    <Application.Styles>
+        <FluentTheme />
+
+        <Style Selector="TextBlock">
+            <!-- default textblock properties -->
+        </Style>
+
+        <Style Selector="TextBlock.standardBody">
+            <Setter Property="Foreground" Value="{DynamicResource SecondaryText}" />
+            <Setter Property="FontSize" Value="{DynamicResource BodyFont}" />
+        </Style>
+
+        <Style Selector="TextBlock.muteBody">
+            <Setter Property="Foreground" Value="{DynamicResource SecondaryText}" />
+            <Setter Property="FontSize" Value="{DynamicResource BodyFont}" />
+            <Setter Property="FontStyle" Value="Italic" />
+            <Setter Property="Opacity" Value="0.67" />
+        </Style>
+
+        <Style Selector="TextBlock.standardHeader">
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryText}" />
+            <Setter Property="FontSize" Value="{DynamicResource H1Font}" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        
+        <Style Selector="Border">
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+
+        <Style Selector="Border.bodyContainer">
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="{DynamicResource StandardPadding}" />
+        </Style>
+
+        <Style Selector="Button.standardButton">
+            <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
+            <Setter Property="Margin" Value="{DynamicResource StandardPadding}" />
+
+            <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource AccentHoverBrush}" />
+            </Style>
+
+            <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource AccentPressedBrush}" />
+                <Setter Property="RenderTransform" Value="translate(0px, 5px)" />
+            </Style>
+
+            <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource AccentPressedBrush}" />
+                <Setter Property="Opacity" Value="0.4" />
+            </Style>
+
+        </Style>
+
+    </Application.Styles>
+</Application>
