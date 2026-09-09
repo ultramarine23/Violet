@@ -16,27 +16,44 @@
     Background="{DynamicResource MidgroundBrush}"
     Padding="20 0"
 	>
-		<!-- add sidebar stuffies here! -->
-        <StackPanel Spacing="40" VerticalAlignment="Center">
-            <Button 
-            Classes="sidebarButton" 
-            Focusable="False" 
-            IsEnabled="{Binding CalendarNavigable}"
-            Command="{Binding NavigateCommand}"
-            CommandParameter="{x:Static local:PageName.CALENDAR}"
-            >
-                <PathIcon Data="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 18H4V10h16zm0-13H4V5h16z"/>
-            </Button>
-            
-            <Button 
-            Classes="sidebarButton" 
-            Focusable="False"
-            IsEnabled="{Binding TasklistNavigable}"
-            Command="{Binding NavigateCommand}"
-            CommandParameter="{x:Static local:PageName.TASKLIST}"
-            >
-                <PathIcon Data="M22 7h-9v2h9zm0 8h-9v2h9zM5.54 11L2 7.46l1.41-1.41l2.12 2.12l4.24-4.24l1.41 1.41zm0 8L2 15.46l1.41-1.41l2.12 2.12l4.24-4.24l1.41 1.41z"/>
-            </Button>
-        </StackPanel>
+		<Grid RowDefinitions="50 *" ColumnDefinitions="Auto" Margin="0 20">
+            <Image 
+            Source="/Assets/violet-icon.png" 
+            Grid.Column="0"
+            Grid.Row="0" 
+            Width="50" 
+            Height="50"
+            />
+
+            <StackPanel Spacing="40" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1">
+                <StackPanel Spacing="5">
+                    <Button 
+                    Classes="sidebarButton" 
+                    Focusable="False" 
+                    IsEnabled="{Binding CalendarNavigable}"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Static local:PageName.CALENDAR}"
+                    >
+                        <Image Source="{SvgImage /Assets/Icons/ic--outline-calendar-today.svg}" />
+                    </Button>
+
+                    <TextBlock Classes="sidebarText" Text="Calendar" HorizontalAlignment="Center" />
+                </StackPanel>
+                
+                <StackPanel Spacing="5">
+                    <Button 
+                    Classes="sidebarButton" 
+                    Focusable="False"
+                    IsEnabled="{Binding TasklistNavigable}"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Static local:PageName.TASKLIST}"
+                    >
+                        <Image Source="{SvgImage /Assets/Icons/ic--outline-checklist.svg}" />
+                    </Button>
+
+                    <TextBlock Classes="sidebarText" Text="Tasklist" HorizontalAlignment="Center" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
     </Border>
 </UserControl>

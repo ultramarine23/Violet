@@ -33,6 +33,7 @@
 
         <!-- Layout/Spacing Variables -->
         <Thickness x:Key="StandardPadding">5, 0</Thickness>
+        <x:Double x:Key="SmallFont">10</x:Double>
         <x:Double x:Key="BodyFont">12</x:Double>
         <x:Double x:Key="H2Font">16</x:Double>
         <x:Double x:Key="H1Font">20</x:Double>
@@ -68,6 +69,11 @@
             <Setter Property="Foreground" Value="{DynamicResource PrimaryText}" />
             <Setter Property="FontSize" Value="{StaticResource TitleFont}" />
             <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <Style Selector="TextBlock.sidebarText">
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryText}" />
+            <Setter Property="FontSize" Value="{StaticResource SmallFont}" />
         </Style>
         
         <Style Selector="Border">
