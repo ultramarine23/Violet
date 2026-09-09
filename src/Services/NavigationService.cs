@@ -38,14 +38,14 @@ public class NavigationService
 				var tlViewmodel = new TasklistViewModel(tlComposer);
 
 				_backend.CurrentPage = tlComposer;
-				_mainWindow.DataContext = new MainViewModel(tlViewmodel);
+				_mainWindow.DataContext = new MainViewModel(tlViewmodel, _backend, this);
 				break;
 			case PageName.CALENDAR:
 				var clComposer = new CalendarComposer();
 				var clViewmodel = new CalendarViewModel(clComposer);
 
 				_backend.CurrentPage = clComposer;
-				_mainWindow.DataContext = new MainViewModel(clViewmodel);
+				_mainWindow.DataContext = new MainViewModel(clViewmodel, _backend, this);
 				break;
 		}
 

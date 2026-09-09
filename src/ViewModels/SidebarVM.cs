@@ -4,11 +4,15 @@ using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Violet.Pages;
+using Violet.Services;
 
 namespace Violet.ViewModels;
 
 public partial class SidebarViewModel : ViewModelBase
 {
+	private readonly NavigationService _navigation;
+
+	
 	[ObservableProperty]
 	private bool _tasklistNavigable;
 
@@ -16,10 +20,12 @@ public partial class SidebarViewModel : ViewModelBase
 	private bool _calendarNavigable;
 
 
-	public SidebarViewModel()
+	public SidebarViewModel(NavigationService navigation)
 	{
 		TasklistNavigable = true;
 		CalendarNavigable = true;
+
+		_navigation = navigation;
 	}
 
 
@@ -33,9 +39,11 @@ public partial class SidebarViewModel : ViewModelBase
 		{
 			case PageName.TASKLIST:
 				TasklistNavigable = false;
+				_navigation.NavigateToPage(PageName.TASKLIST);
 				break;
 			case PageName.CALENDAR:
 				CalendarNavigable = false;
+				_navigation.NavigateToPage(PageName.CALENDAR);
 				break;
 		}
 	}
