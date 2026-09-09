@@ -8,21 +8,13 @@
 	HorizontalAlignment="Stretch"
 	Margin="25"
 >
-	<StackPanel Spacing="10">
+	<StackPanel Spacing="10" Margin="15">
 
-		<Border Padding="15" CornerRadius="10" 
-		Background="{DynamicResource MidgroundBrush}">
-			<TextBlock Classes="standardHeader" HorizontalAlignment="Center" Text="VIOLET" />
-		</Border>
-
-		<Grid Margin="25 10" ColumnDefinitions="120, *, 2*"
-		RowDefinitions="Auto, Auto, Auto" RowSpacing="5"
+		<Border CornerRadius="10" 
+		Background="{DynamicResource MidgroundBrush}"
 		>
-			<TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">Celsius</TextBlock>
-			<TextBox Grid.Column="1" Grid.Row="0">0</TextBox>
-			<TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">Fahrenheit</TextBlock>
-			<TextBox Grid.Column="1" Grid.Row="1">0</TextBox>
-		</Grid>
+			<TextBlock Classes="standardTitle" HorizontalAlignment="Center">VIOLET</TextBlock>
+		</Border>
 
 		<ItemsControl ItemsSource="{Binding TaskList}" />
 

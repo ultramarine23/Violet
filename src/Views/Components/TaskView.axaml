@@ -13,16 +13,20 @@
         CornerRadius="4"
         Padding="16"
 	>
-        <CheckBox>
-			<StackPanel VerticalAlignment="Center" Spacing="0">
-				<Border Classes="bodyContainer">
-					<TextBlock Classes="standardBody" Text="{Binding Description}" />
-				</Border>
-				<Border Classes="bodyContainer">
-					<TextBlock Classes="standardBody" Text="aaaaaa" />
-				</Border>
-        	</StackPanel>
-		</CheckBox>
+        <Grid ColumnDefinitions="32 *" RowDefinitions="Auto Auto">
+			<CheckBox Grid.Column="0" Grid.RowSpan="2" >
+				
+			</CheckBox>
+			
+			<Border Grid.Column="1" Grid.Row="0">
+				<TextBlock Classes="standardBody" Text="{Binding Description}" />
+			</Border>
+
+			<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+				<TextBlock Classes="muteBody" Text="due on: " />
+				<TextBlock Classes="muteBody" Text="{Binding DateDueString}" />
+			</StackPanel>
+		</Grid>
 
     </Border>
 </UserControl>

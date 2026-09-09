@@ -2,7 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="Violet.App"
              xmlns:local="using:Violet"
-             RequestedThemeVariant="Dark">
+             RequestedThemeVariant="Dark"
+             >
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.DataTemplates>
@@ -47,19 +48,25 @@
 
         <Style Selector="TextBlock.standardBody">
             <Setter Property="Foreground" Value="{DynamicResource SecondaryText}" />
-            <Setter Property="FontSize" Value="{DynamicResource BodyFont}" />
+            <Setter Property="FontSize" Value="{StaticResource BodyFont}" />
         </Style>
 
         <Style Selector="TextBlock.muteBody">
             <Setter Property="Foreground" Value="{DynamicResource SecondaryText}" />
-            <Setter Property="FontSize" Value="{DynamicResource BodyFont}" />
+            <Setter Property="FontSize" Value="{StaticResource BodyFont}" />
             <Setter Property="FontStyle" Value="Italic" />
             <Setter Property="Opacity" Value="0.67" />
         </Style>
 
         <Style Selector="TextBlock.standardHeader">
             <Setter Property="Foreground" Value="{DynamicResource PrimaryText}" />
-            <Setter Property="FontSize" Value="{DynamicResource H1Font}" />
+            <Setter Property="FontSize" Value="{StaticResource H1Font}" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <Style Selector="TextBlock.standardTitle">
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryText}" />
+            <Setter Property="FontSize" Value="{StaticResource TitleFont}" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
         
