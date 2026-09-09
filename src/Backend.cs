@@ -1,15 +1,17 @@
 using Violet.Models;
 using Violet.Pages;
 
+
 public class Backend
 {
-    public TasklistComposer Tasklist { get; }
+    public AppData Data { get; set; }
 	public ComposerBase CurrentPage { get; set; }
 
     public Backend()
     {
-        Tasklist = new TasklistComposer();
-
-		CurrentPage = Tasklist;
+		CurrentPage = new TasklistComposer();
+        Data = new AppData();
     } 
+
+
 }

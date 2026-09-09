@@ -10,6 +10,11 @@ public partial class MainViewModel : ViewModelBase
 	private object? _currentPage;
 
 
+	public MainViewModel()
+	{
+		// empty
+	}
+
 	// constructor
 	public MainViewModel(ViewModelBase pageVM)
 	{

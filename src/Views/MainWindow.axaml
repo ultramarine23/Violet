@@ -26,8 +26,8 @@
     </Window.DataTemplates>
 
     
-    <Grid ColumnDefinitions="* 11*" RowDefinitions="*">
-        <views:SidebarView 
+    <Grid ColumnDefinitions="Auto *" RowDefinitions="*">
+        <views:SidebarView
             Grid.Column="0" 
             Grid.Row="0"
         />

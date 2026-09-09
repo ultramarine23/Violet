@@ -82,7 +82,7 @@
 
         <Style Selector="Button.standardButton">
             <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
-            <Setter Property="Margin" Value="{DynamicResource StandardPadding}" />
+            <Setter Property="Margin" Value="0" />
 
             <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
                 <Setter Property="Background" Value="{DynamicResource AccentHoverBrush}" />
@@ -97,8 +97,28 @@
                 <Setter Property="Background" Value="{DynamicResource AccentPressedBrush}" />
                 <Setter Property="Opacity" Value="0.4" />
             </Style>
-
         </Style>
 
+        <Style Selector="Button.sidebarButton">
+            <Setter Property="Background" Value="{DynamicResource ElevatedBrush}"/>
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Width" Value="50" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+
+            <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource AccentHoverBrush}" />
+            </Style>
+
+            <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource AccentPressedBrush}" />
+            </Style>
+
+            <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
+                <Setter Property="Opacity" Value="0.4" />
+            </Style>
+        </Style>
     </Application.Styles>
 </Application>
