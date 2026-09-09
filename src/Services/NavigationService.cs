@@ -34,14 +34,14 @@ public class NavigationService
 		{
 			case PageName.TASKLIST:
 				Console.WriteLine("we successfully got here!");
-				var tlComposer = new TasklistComposer();
+				var tlComposer = new TasklistComposer(_backend.Data, _backend.TaskService);
 				var tlViewmodel = new TasklistViewModel(tlComposer);
 
 				_backend.CurrentPage = tlComposer;
 				_mainWindow.DataContext = new MainViewModel(tlViewmodel, _backend, this);
 				break;
 			case PageName.CALENDAR:
-				var clComposer = new CalendarComposer();
+				var clComposer = new CalendarComposer(_backend.Data);
 				var clViewmodel = new CalendarViewModel(clComposer);
 
 				_backend.CurrentPage = clComposer;

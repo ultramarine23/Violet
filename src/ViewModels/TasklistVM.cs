@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Linq;
+using Violet.Models;
 using Violet.Pages;
 
 namespace Violet.ViewModels;
@@ -7,16 +8,18 @@ namespace Violet.ViewModels;
 public partial class TasklistViewModel : ViewModelBase
 {
 	private readonly TasklistComposer _tasksPage;
+	private readonly AppData _appData;
 	
-	public ObservableCollection<TaskViewModel> TaskList { get; }
+	public ObservableCollection<TaskViewModel> TaskViewModels { get; }
 
 
 	public TasklistViewModel(TasklistComposer tasksPage)
 	{
 		_tasksPage = tasksPage;
+		_appData = tasksPage.appData;
 		
-		TaskList = new ObservableCollection<TaskViewModel>(
-            _tasksPage.tasks.Select(x => new TaskViewModel(x))
+		TaskViewModels = new ObservableCollection<TaskViewModel>(
+            _appData.Tasks.Select(x => new TaskViewModel(x))
         );
 	}
 }

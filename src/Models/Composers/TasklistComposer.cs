@@ -1,22 +1,32 @@
 using System;
 using System.Collections.Generic;
 using Violet.Models;
+using Violet.Services;
 
 namespace Violet.Pages;
 
 public class TasklistComposer : ComposerBase
 {
-	public List<Task> tasks;
+	private TaskService _taskService;
+	
+	public readonly AppData appData;
 
 
-	public TasklistComposer()
+	public TasklistComposer(AppData appData, TaskService taskService)
 	{
-		tasks = [new Task("boop", DateTime.Now, TimeSpan.FromHours(5))];
+		this.appData = appData;
+		_taskService = taskService;
+	}
+
+
+	public void AddTask()
+	{
+		_taskService.AddTask(new Task("bbbbb", DateTime.Now, TimeSpan.FromDays(5)));
 	}
 
 
 	public void DeleteTask(Task task)
 	{
-		tasks.Remove(task);
+		// pass
 	}
 }

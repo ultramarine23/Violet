@@ -1,14 +1,21 @@
+using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using Violet.Models;
 
 namespace Violet;
 
 public class AppData
 {
-	public List<Task> tasks;
+	public AppDataReadOnly ReadOnly { get; }
+	
+	public ObservableCollection<Task> Tasks { get; }
+
 	
 	public AppData()
 	{
-		tasks = new List<Task>();
+		Tasks = new ObservableCollection<Task>();
+
+		ReadOnly = new AppDataReadOnly(this);
 	}
 }

@@ -16,7 +16,7 @@
 			<TextBlock Classes="standardTitle" HorizontalAlignment="Center">VIOLET</TextBlock>
 		</Border>
 
-		<ItemsControl ItemsSource="{Binding TaskList}" />
+		<ItemsControl ItemsSource="{Binding TaskViewModels}" />
 
     </StackPanel>
 		
