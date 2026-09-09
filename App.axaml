@@ -102,7 +102,7 @@
         <Style Selector="Button.sidebarButton">
             <Setter Property="Background" Value="{DynamicResource ElevatedBrush}"/>
             <Setter Property="Margin" Value="0" />
-            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="CornerRadius" Value="10" />
             <Setter Property="Height" Value="50" />
             <Setter Property="Width" Value="50" />
             <Setter Property="HorizontalAlignment" Value="Center" />
@@ -117,7 +117,6 @@
 
             <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
                 <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
-                <Setter Property="Opacity" Value="0.4" />
             </Style>
         </Style>
     </Application.Styles>

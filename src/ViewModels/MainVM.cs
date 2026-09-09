@@ -5,20 +5,22 @@ namespace Violet.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
-    // fields
+    public SidebarViewModel SidebarVM { get; private set; }
+	
+	// fields
 	[ObservableProperty]
 	private object? _currentPage;
 
-
 	public MainViewModel()
 	{
-		// empty
+		SidebarVM = new SidebarViewModel();
 	}
 
 	// constructor
 	public MainViewModel(ViewModelBase pageVM)
 	{
 		CurrentPage = pageVM;
+		SidebarVM = new SidebarViewModel();
 	}
 
 }

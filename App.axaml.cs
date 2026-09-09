@@ -9,6 +9,13 @@ using Violet.Views;
 
 namespace Violet;
 
+public enum PageName
+{
+	TASKLIST,
+	CALENDAR,
+}
+
+
 public partial class App : Application
 {
     public Backend Backend { get; private set; }
@@ -40,7 +47,7 @@ public partial class App : Application
             // };
         }
 
-        Navigation.NavigateToPage(NavigationService.Page.TASKLIST);
+        Navigation.NavigateToPage(PageName.TASKLIST);
 
         base.OnFrameworkInitializationCompleted();
     }

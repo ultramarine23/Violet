@@ -1,6 +1,7 @@
 using Violet.Models;
 using Violet.Pages;
 
+namespace Violet;
 
 public class Backend
 {

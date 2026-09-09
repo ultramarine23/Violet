@@ -17,6 +17,7 @@
         <vm:MainViewModel />
     </Design.DataContext>
 
+    <!--
     <Window.DataTemplates>
 
         <DataTemplate DataType="vm:TasklistViewModel">
@@ -24,10 +25,11 @@
         </DataTemplate>
 
     </Window.DataTemplates>
-
+    -->
     
     <Grid ColumnDefinitions="Auto *" RowDefinitions="*">
         <views:SidebarView
+            DataContext="{Binding SidebarVM}"
             Grid.Column="0" 
             Grid.Row="0"
         />
