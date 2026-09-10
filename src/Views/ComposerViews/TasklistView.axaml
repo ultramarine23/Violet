@@ -16,6 +16,10 @@
 			<TextBlock Classes="standardTitle" HorizontalAlignment="Center">VIOLET</TextBlock>
 		</Border>
 
+		<Button Command="{Binding AddTaskCommand}">
+			Add
+		</Button>
+
 		<ItemsControl ItemsSource="{Binding TaskViewModels}" />
 
     </StackPanel>

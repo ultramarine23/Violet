@@ -6,9 +6,9 @@ namespace Violet.Pages;
 
 public class CalendarComposer : ComposerBase
 {
-	private AppData _appData;
+	private AppDataReadOnly _appData;
 	
-	public CalendarComposer(AppData appData)
+	public CalendarComposer(AppDataReadOnly appData)
 	{
 		_appData = appData;
 	}

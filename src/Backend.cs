@@ -7,6 +7,7 @@ namespace Violet;
 public class Backend
 {
     public AppData Data { get; set; }
+    public AppDataReadOnly ReadOnlyData { get; set; }
 	public ComposerBase? CurrentPage { get; set; }
 
     // services
@@ -17,6 +18,7 @@ public class Backend
     {
 		CurrentPage = null;
         Data = new AppData();
+        ReadOnlyData = Data.ReadOnly;
 
         TaskService = new TaskService(Data);
     } 

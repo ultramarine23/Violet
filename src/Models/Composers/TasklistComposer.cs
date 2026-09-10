@@ -9,10 +9,10 @@ public class TasklistComposer : ComposerBase
 {
 	private TaskService _taskService;
 	
-	public readonly AppData appData;
+	public AppDataReadOnly appData;
 
 
-	public TasklistComposer(AppData appData, TaskService taskService)
+	public TasklistComposer(AppDataReadOnly appData, TaskService taskService)
 	{
 		this.appData = appData;
 		_taskService = taskService;
