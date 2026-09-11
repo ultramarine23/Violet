@@ -30,6 +30,8 @@ public class NavigationService
 			return;
 		}
 		
+		var mvm = _mainWindow.DataContext as MainViewModel;
+
 		switch (page)
 		{
 			case PageName.TASKLIST:
@@ -38,16 +40,36 @@ public class NavigationService
 				var tlViewmodel = new TasklistViewModel(tlComposer);
 
 				_backend.CurrentPage = tlComposer;
-				_mainWindow.DataContext = new MainViewModel(tlViewmodel, _backend, this);
+
+				// generate a new MainVM as DataContext if the current DataContext is null
+				if (mvm == null)
+				{
+					_mainWindow.DataContext = new MainViewModel(tlViewmodel, _backend, this);
+				}
+				else
+				{
+					mvm.CurrentPage = tlViewmodel;
+				}
+	
 				break;
+				
 			case PageName.CALENDAR:
 				var clComposer = new CalendarComposer(_backend.ReadOnlyData);
 				var clViewmodel = new CalendarViewModel(clComposer);
 
 				_backend.CurrentPage = clComposer;
-				_mainWindow.DataContext = new MainViewModel(clViewmodel, _backend, this);
+
+				// generate a new MainVM as DataContext if the current DataContext is null
+				if (mvm == null)
+				{
+					_mainWindow.DataContext = new MainViewModel(clViewmodel, _backend, this);
+				}
+				else
+				{
+					mvm.CurrentPage = clViewmodel;
+				}
+
 				break;
 		}
-
 	}
 }
