@@ -8,6 +8,7 @@ public class Task
 	public DateTime dateDue;
 	public DateTime dateCreated;
 	public TimeSpan estimatedTime;
+	public Guid uuid;
 
 	public DateTime TrueDateDue
 	{
@@ -22,6 +23,7 @@ public class Task
 	{
 		// empty task creator
 		description = "";
+		uuid = Guid.CreateVersion7();
 	}
 
 	public Task(

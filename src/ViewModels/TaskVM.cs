@@ -9,6 +9,8 @@ namespace Violet.ViewModels;
 
 public partial class TaskViewModel : ViewModelBase
 {
+	public Guid uuid;
+
 	[ObservableProperty]
 	private string _description;
 
@@ -35,6 +37,8 @@ public partial class TaskViewModel : ViewModelBase
 		DateDue = task.dateDue;
 		DateCreated = task.dateCreated;
 		EstimatedTime = task.estimatedTime;
+
+		uuid = task.uuid;
 	}
 
 }
