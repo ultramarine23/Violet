@@ -34,7 +34,6 @@ public class ViewLocator : IDataTemplate
         }
         
 
-        Console.WriteLine("boop");
         var type = Type.GetType(name);
 
         if (type != null)

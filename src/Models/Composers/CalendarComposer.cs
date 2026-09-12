@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Violet.Models;
+using Violet.ViewModels;
 
-namespace Violet.Pages;
+namespace Violet.Scenes;
 
 /* {#fff}
 { CLASS DESCRIPTION }
@@ -18,13 +19,15 @@ public class CalendarComposer : ComposerBase
 	
 
 	// --> 2: PROPERTIES {y}
-	//
+	public ViewModelBase SceneModel { get; }
 	
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
 	public CalendarComposer(AppDataReadOnly appData)
 	{
 		_appData = appData;
+
+		SceneModel = new CalendarSceneModel(this);
 	}
 
 

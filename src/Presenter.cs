@@ -1,25 +1,38 @@
 using System;
 using System.Globalization;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data;
-using Violet.Pages;
+using Violet.Scenes;
 using Violet.ViewModels;
 using Violet.Views;
 
-namespace Violet.Services;
+namespace Violet;
+
+public enum PageName
+{
+	TASKLIST,
+	CALENDAR,
+}
 
 /* {#fff}
 { CLASS DESCRIPTION }
-	NavigationService is a non-Backend-owned service that is responsible for performing
+	Presenter is a non-Backend-owned service that is responsible for performing
 	Scene changes safely. Direct Scene change via MainViewModel.DisplayVmAsScene() is
 	not recommended.
 */
 
 
-public class NavigationService
+public class Presenter
 {	
 	// --> 1: CONSTS, STATICS, FIELDS {r}
+	private const PageName InitialPage = PageName.TASKLIST;
+	
 	private readonly Backend _backend;
+
+	// presenter directly owns both main window and main vm; main window
+	// DOES NOT own main vm: they are synced together by the presenter
 	private MainWindow? _mainWindow;
+	private MainViewModel? _mainVM;
 	
 
 	// --> 2: PROPERTIES {y}
@@ -27,15 +40,26 @@ public class NavigationService
 
 
 	// --> 3: CONSTRUCTOR, DEPENDENCY INJECTIONS {g}
-	public NavigationService(Backend backend)
+	public Presenter(Backend backend)
 	{
 		_backend = backend;
-		_mainWindow = null;
 	}
 
-	public void InjectMainWindow(MainWindow mainWindow)
+	// called by App after framework init, to start presentation
+	public void GenerateMainWindow(IClassicDesktopStyleApplicationLifetime desktop)
 	{
-		_mainWindow = mainWindow;
+		// initialize a MainWindow and a MainVM
+		_mainWindow = new MainWindow();
+		_mainVM = new MainViewModel(this);
+
+		// set MainWindow as the actual window of the app
+		desktop.MainWindow = _mainWindow;
+
+		// set MainVM as the VM of MainWindow
+		_mainWindow.DataContext = _mainVM;
+
+		// switch to the intended landing page
+		NavigateToPage(InitialPage);
 	}
 
 
@@ -52,7 +76,7 @@ public class NavigationService
 		{
 			case PageName.TASKLIST:
 				var tlComposer = new TasklistComposer(_backend.ReadOnlyData, _backend.TaskService);
-				var tlViewmodel = new TasklistSceneModel(tlComposer);
+				var tlViewmodel = tlComposer.SceneModel;
 
 				_backend.CurrentPage = tlComposer;
 				ChangeCurrentComposerVM(tlViewmodel);
@@ -74,7 +98,7 @@ public class NavigationService
 	// --> 5: INTERNAL METHODS {v}
 	// largely an implementation detail of NavigateToPage()
 	// switches the Composer VM currently being displayed in the main window
-	private void ChangeCurrentComposerVM(ViewModelBase composer)
+	private void ChangeCurrentComposerVM(ViewModelBase sceneModel)
 	{
 		if (_mainWindow == null) return;
 		
@@ -82,11 +106,13 @@ public class NavigationService
 		var mvm = _mainWindow.DataContext as MainViewModel;
 		if (mvm == null)
 		{
-			_mainWindow.DataContext = new MainViewModel(composer, _backend, this);
+			// create a new MVM and attach it to MainWindow
+			_mainWindow.DataContext = new MainViewModel(sceneModel, this);
 		}
 		else
 		{
-			mvm.DisplayVmAsScene(composer);
+			// interact with the existing MVM
+			mvm.DisplaySceneModel(sceneModel);
 		}
 	}
 }

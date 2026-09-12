@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Violet.Models;
-using Violet.Pages;
+using Violet.Scenes;
+using Violet.Services;
 
 namespace Violet.ViewModels;
 
@@ -21,20 +23,26 @@ public partial class TasklistSceneModel : ViewModelBase
 	// --> 1: CONSTS, STATICS, FIELDS {r}
 	private readonly TasklistComposer _tasklistPage;
 	private readonly AppDataReadOnly _appData;
+	private readonly TaskService _taskService;
 	
 
 	// --> 2: PROPERTIES {y}
 	public ObservableCollection<TaskViewModel> TaskViewModels { get; }
 
+	[ObservableProperty]
+	private TaskAdderViewModel _taskAdderVM;
+
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public TasklistSceneModel(TasklistComposer tasksPage)
+	public TasklistSceneModel(TasklistComposer tasksPage, TaskService taskService)
 	{
 		_tasklistPage = tasksPage;
 		_appData = tasksPage.appData;
+		_taskService = taskService;
 
 		// initialize the Task VM list
 		TaskViewModels = new ObservableCollection<TaskViewModel>();
+		TaskAdderVM = new TaskAdderViewModel(_taskService);
 		
 		foreach (Task t in _appData.Tasks)
 		{
@@ -60,12 +68,7 @@ public partial class TasklistSceneModel : ViewModelBase
 
 
 	// --> 4: PUBLIC METHODS {b}
-	[RelayCommand]
-	public void AddTask()
-	{
-		_tasklistPage.AddTask();
-	}
-	
+	//
 
 
 	// --> 5: PRIVATE METHODS {v}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Violet.Pages;
+using Violet.Scenes;
 using Violet.Services;
 
 namespace Violet.ViewModels;
@@ -12,7 +12,7 @@ public partial class SidebarViewModel : ViewModelBase
 {
 
 	// --> 1: CONSTS, STATICS, FIELDS {r}
-	private readonly NavigationService _navigation;
+	private readonly Presenter _presenter;
 
 
 	// --> 2: PROPERTIES {y}
@@ -24,12 +24,12 @@ public partial class SidebarViewModel : ViewModelBase
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public SidebarViewModel(NavigationService navigation)
+	public SidebarViewModel(Presenter presenter)
 	{
 		TasklistNavigable = true;
 		CalendarNavigable = true;
 
-		_navigation = navigation;
+		_presenter = presenter;
 	}
 
 	public override void Dispose()
@@ -49,11 +49,11 @@ public partial class SidebarViewModel : ViewModelBase
 		{
 			case PageName.TASKLIST:
 				TasklistNavigable = false;
-				_navigation.NavigateToPage(PageName.TASKLIST);
+				_presenter.NavigateToPage(PageName.TASKLIST);
 				break;
 			case PageName.CALENDAR:
 				CalendarNavigable = false;
-				_navigation.NavigateToPage(PageName.CALENDAR);
+				_presenter.NavigateToPage(PageName.CALENDAR);
 				break;
 		}
 	}

@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using Violet.Models;
 using Violet.Services;
+using Violet.ViewModels;
 
-namespace Violet.Pages;
+namespace Violet.Scenes;
 
 /* {#fff}
 { CLASS DESCRIPTION }
@@ -20,7 +21,7 @@ public class TasklistComposer : ComposerBase
 
 
 	// --> 2: PROPERTIES {y}
-	//
+	public ViewModelBase SceneModel { get; }
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
@@ -28,19 +29,13 @@ public class TasklistComposer : ComposerBase
 	{
 		this.appData = appData;
 		_taskService = taskService;
+
+		SceneModel = new TasklistSceneModel(this, _taskService);
 	}
 
 
 	// --> 4: PUBLIC METHODS {b}
-	public void AddTask()
-	{
-		_taskService.AddTask(new Task("bbbbb", DateTime.Now, TimeSpan.FromDays(5)));
-	}
-
-	public void DeleteTask(Task task)
-	{
-		// pass
-	}
+	//
 
 
 	// --> 5: PRIVATE METHODS {v}

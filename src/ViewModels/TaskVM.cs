@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Violet.Models;
 using Violet.Utils;
@@ -40,10 +38,10 @@ public partial class TaskViewModel : ViewModelBase
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
 	public TaskViewModel(Task task)
 	{
-		Description = task.Description;
-		DateDue = task.DateDue;
-		DateCreated = task.DateCreated;
-		EstimatedTime = task.EstimatedTime;
+		Description = task.Data.Description;
+		DateDue = task.Data.DateDue;
+		DateCreated = task.Data.DateCreated;
+		EstimatedTime = task.Data.EstimatedTime;
 		Uuid = task.Uuid;
 	}
 

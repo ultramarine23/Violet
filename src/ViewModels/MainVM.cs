@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Violet.Services;
+using Violet.Views;
 
 namespace Violet.ViewModels;
 
@@ -14,8 +15,7 @@ namespace Violet.ViewModels;
 public partial class MainViewModel : ViewModelBase
 {
 	// --> 1: CONSTS, STATICS, FIELDS {r}
-	private Backend _backend;
-	private NavigationService _navigation;
+	private Presenter _presenter;
 	
 
 	// --> 2: PROPERTIES {y}
@@ -26,19 +26,17 @@ public partial class MainViewModel : ViewModelBase
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public MainViewModel(Backend backend, NavigationService navigation)
+	public MainViewModel(Presenter presenter)
 	{
-		_backend = backend;
-		_navigation = navigation;
-		SidebarVM = new SidebarViewModel(_navigation);
+		_presenter = presenter;
+		SidebarVM = new SidebarViewModel(_presenter);
 	}
 
-	public MainViewModel(ViewModelBase pageVM, Backend backend, NavigationService navigation)
+	public MainViewModel(ViewModelBase pageVM, Presenter presenter)
 	{
-		_backend = backend;
-		_navigation = navigation;
+		_presenter = presenter;
 		CurrentPage = pageVM;
-		SidebarVM = new SidebarViewModel(_navigation);
+		SidebarVM = new SidebarViewModel(_presenter);
 	}
 
 	public override void Dispose()
@@ -49,11 +47,11 @@ public partial class MainViewModel : ViewModelBase
 
 
 	// --> 4: PUBLIC METHODS {b}
-	public void DisplayVmAsScene(ViewModelBase composerVM)
+	public void DisplaySceneModel(ViewModelBase sceneModel)
 	{
 		// no need to do anything on top of this; the ObservableProperty
 		// will automatically update the MainView.
-		CurrentPage = composerVM;
+		CurrentPage = sceneModel;
 	}
 
 

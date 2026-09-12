@@ -1,5 +1,5 @@
 using Violet.Models;
-using Violet.Pages;
+using Violet.Scenes;
 using Violet.Services;
 
 namespace Violet;
@@ -7,7 +7,8 @@ namespace Violet;
 public class Backend
 {
     // --> 
-    public AppData Data { get; set; }
+    private AppData _data;
+
     public AppDataReadOnly ReadOnlyData { get; set; }
 	public ComposerBase? CurrentPage { get; set; }
 
@@ -19,11 +20,12 @@ public class Backend
     // --> CONSTRUCTOR {v}
     public Backend()
     {
-		CurrentPage = null;
-        Data = new AppData();
-        ReadOnlyData = Data.ReadOnly;
+		_data = new AppData();
+        
+        CurrentPage = null;
+        ReadOnlyData = _data.ReadOnly;
 
-        TaskService = new TaskService(Data);
+        TaskService = new TaskService(_data);
     } 
 
 

@@ -2,6 +2,7 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:vm="using:Violet.ViewModels"
+	xmlns:views="using:Violet.Views"
 
 	x:Class="Violet.Views.TasklistScene"
 	x:DataType="vm:TasklistSceneModel"
@@ -12,11 +13,7 @@
 >
 	<StackPanel Spacing="10" Margin="15">
 
-		<Border CornerRadius="10" Background="{DynamicResource MidgroundBrush}">
-			<TextBlock Classes="standardTitle" HorizontalAlignment="Center" Text="VIOLET" />
-		</Border>
-
-		<Button Command="{Binding AddTaskCommand}" Content="Add" />
+		<views:TaskAdderView DataContext="{Binding TaskAdderVM}"/>
 		<ItemsControl ItemsSource="{Binding TaskViewModels}" />
 
     </StackPanel>

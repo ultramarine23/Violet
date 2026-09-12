@@ -1,6 +1,4 @@
-using System;
 using System.Linq;
-using Microsoft.VisualBasic;
 using Violet.Models;
 
 namespace Violet.Services;
@@ -20,7 +18,7 @@ public enum TaskSortMode
 }
 
 
-public class TaskService
+public class TaskService : ITaskEditor, ITaskListOperator, ITaskListOrganizer
 {
 	// --> 1: INTERNALS {r}	
 	private readonly AppData _appData;
@@ -59,10 +57,10 @@ public class TaskService
 		switch (mode)
 		{
 			case TaskSortMode.CLOSEST_DUE:
-				_appData.Tasks.OrderBy(t => t.DateDue);
+				_appData.Tasks.OrderBy(t => t.Data.DateDue);
 				break;
 			case TaskSortMode.RECENTLY_CREATED:
-				_appData.Tasks.OrderBy(t => t.DateCreated);
+				_appData.Tasks.OrderBy(t => t.Data.DateCreated);
 				break;
 		}
 	}
@@ -70,6 +68,11 @@ public class TaskService
 	public void MarkTaskAsDone(Task task)
 	{
 		task.MarkAsDone();
+	}
+
+	public void EditTaskData(Task task, TaskData taskData)
+	{
+		task.EditTaskDetails(taskData);
 	}
 
 

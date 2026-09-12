@@ -13,29 +13,18 @@ namespace Violet;
 */
 
 
-public enum PageName
-{
-	TASKLIST,
-	CALENDAR,
-}
-
-
 public partial class App : Application
-{
-    private const PageName InitialPage = PageName.TASKLIST;
-    
-    // The Three Holy Relics: the major components of App
+{    
+    // The Two Holy Relics: the major components of App
     private readonly Backend _backend;
-    private readonly NavigationService _navigation;
-    private MainWindow? _mainWindow;
+    private readonly Presenter _presenter;
     
 
     // --> CONSTRUCTOR {r}
     public App()
     {
         _backend = new Backend();
-        _navigation = new NavigationService(_backend);
-        _mainWindow = null;
+        _presenter = new Presenter(_backend);
     }
 
 
@@ -52,12 +41,8 @@ public partial class App : Application
     {        
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {            
-            _mainWindow = new MainWindow();
-            desktop.MainWindow = _mainWindow;
-            _navigation.InjectMainWindow(_mainWindow);
+            _presenter.GenerateMainWindow(desktop);
         }
-
-        _navigation.NavigateToPage(InitialPage);
 
         base.OnFrameworkInitializationCompleted();
     }
