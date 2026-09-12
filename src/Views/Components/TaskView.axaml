@@ -7,26 +7,31 @@
 	VerticalAlignment="Stretch"
 	HorizontalAlignment="Stretch"
 >
-	
     <Border
         Background="{DynamicResource MidgroundBrush}"
         CornerRadius="4"
         Padding="16"
 	>
         <Grid ColumnDefinitions="32 *" RowDefinitions="Auto Auto">
-			<CheckBox Grid.Column="0" Grid.RowSpan="2" >
-				
-			</CheckBox>
-			
+			<!-- {r} CHECKBOX -->
+			<CheckBox Grid.Column="0" Grid.RowSpan="2" />
+
+
+			<!-- {g} VIEW DECLARATION -->
 			<Border Grid.Column="1" Grid.Row="0">
 				<TextBlock Classes="standardBody" Text="{Binding Description}" />
 			</Border>
 
+
+			<!-- {v} VIEW DECLARATION -->
 			<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
 				<TextBlock Classes="muteBody" Text="due on: " />
 				<TextBlock Classes="muteBody" Text="{Binding DateDueString}" />
 			</StackPanel>
-		</Grid>
 
+			
+		</Grid>
     </Border>
+
+	
 </UserControl>

@@ -1,5 +1,7 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Violet.ViewModels"
+             xmlns:views="using:Violet.Views"
              x:Class="Violet.App"
              xmlns:local="using:Violet"
              RequestedThemeVariant="Dark"
@@ -11,7 +13,7 @@
     </Application.DataTemplates>
 
     <Application.Resources>
-        <!-- Color Variables -->
+        <!-- {white} Color Variables -->                  
         <Color x:Key="Background">#29262f</Color>
         <Color x:Key="Midground">#312d37</Color>
         <Color x:Key="Elevated">#3c3744</Color>
@@ -21,7 +23,8 @@
         <Color x:Key="Accent">#8758b3</Color>
         <Color x:Key="AccentHover">#A867F2</Color>
 
-        <!-- Brush Variables -->
+
+        <!-- {white} Brush Variables -->
         <SolidColorBrush x:Key="BackgroundBrush" Color="{DynamicResource Background}" />
         <SolidColorBrush x:Key="MidgroundBrush" Color="{DynamicResource Midground}" />
         <SolidColorBrush x:Key="ElevatedBrush" Color="{DynamicResource Elevated}" />
@@ -31,18 +34,22 @@
         <SolidColorBrush x:Key="AccentBrush" Color="{DynamicResource Accent}" />
         <SolidColorBrush x:Key="AccentHoverBrush" Color="{DynamicResource AccentHover}" />
 
-        <!-- Layout/Spacing Variables -->
+
+        <!-- {white} Layout/Spacing Variables -->
         <Thickness x:Key="StandardPadding">5, 0</Thickness>
         <x:Double x:Key="SmallFont">10</x:Double>
         <x:Double x:Key="BodyFont">12</x:Double>
         <x:Double x:Key="H2Font">16</x:Double>
         <x:Double x:Key="H1Font">20</x:Double>
         <x:Double x:Key="TitleFont">32</x:Double>
+
+
     </Application.Resources>
 
     <Application.Styles>
         <FluentTheme />
 
+        <!-- {r} TEXTBLOCK STYLES -->
         <Style Selector="TextBlock">
             <!-- default textblock properties -->
         </Style>
@@ -75,7 +82,9 @@
             <Setter Property="Foreground" Value="{DynamicResource PrimaryText}" />
             <Setter Property="FontSize" Value="{StaticResource SmallFont}" />
         </Style>
-        
+
+
+        <!-- {o}  BORDER STYLES -->
         <Style Selector="Border">
             <Setter Property="Margin" Value="0" />
             <Setter Property="Padding" Value="0"/>
@@ -86,6 +95,8 @@
             <Setter Property="Padding" Value="{DynamicResource StandardPadding}" />
         </Style>
 
+
+        <!-- {y} BUTTON STYLES -->
         <Style Selector="Button.standardButton">
             <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
             <Setter Property="Margin" Value="0" />
@@ -125,5 +136,7 @@
                 <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
             </Style>
         </Style>
+
+
     </Application.Styles>
 </Application>

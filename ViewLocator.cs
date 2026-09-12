@@ -19,7 +19,22 @@ public class ViewLocator : IDataTemplate
         if (param is null)
             return null;
         
-        var name = param.GetType().FullName!.Replace("ViewModel", "View", StringComparison.Ordinal);
+        
+        var name = param.GetType().FullName!;
+        
+        // --> this part has been modified to accommodate for scenes {b}
+        if (name.EndsWith("ViewModel"))
+        {
+            name = name.Replace("ViewModel", "View", StringComparison.Ordinal);
+        }
+        else if (name.EndsWith("SceneModel"))
+        {
+            name = name.Replace("ViewModel", "View", StringComparison.Ordinal);
+            name = name.Replace("SceneModel", "Scene", StringComparison.Ordinal);
+        }
+        
+
+        Console.WriteLine("boop");
         var type = Type.GetType(name);
 
         if (type != null)

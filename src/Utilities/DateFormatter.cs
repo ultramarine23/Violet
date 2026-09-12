@@ -3,9 +3,18 @@ using System.Collections.Generic;
 
 namespace Violet.Utils;
 
+/* {#fff}
+{ CLASS DESCRIPTION }
+	DateFormatter is a utility class that provides static methods for
+	advanced date formatting (such as converting into relative dates
+	like "next Wednesday" or "in two Mondays")
+*/
+
+
 public static class DateFormatter
 {
-	// the maximum distance to a raw until [GetRelativeDate] gives up. 
+	// --> 1: CONSTS, STATICS, FIELDS {r}
+	// the maximum distance to a raw until [GetRelativeDate] gives up
 	private const int RELATIVE_THRESHOLD = 30;
 
 	private static readonly Dictionary<int, string> englishNumbers = new()
@@ -14,6 +23,8 @@ public static class DateFormatter
 		[7] = "seven", [8] = "eight", [9] = "nine", [10] = "ten", [11] = "eleven"
 	};
 	
+
+	// --> 4: PUBLIC UTILITY METHODS {b}
 	public static string GetRelativeDate(DateTime raw)
 	{
 		var prefix = "";
@@ -34,7 +45,6 @@ public static class DateFormatter
 			dayString = "tomorrow";
 			return dayString;
 		}
-		
 
 		// handle the cases where the raw is unreasonably far away
 		if (rawDate.Year != currentDate.Year)
@@ -47,7 +57,6 @@ public static class DateFormatter
 			dayString = raw.ToString("dd MMM yyyy");
 			return dayString;
 		}
-
 
 		// all other cases: the distance is between two days and the relative threshold
 		var remainingWeekdays = 7 - (int)currentDate.DayOfWeek;

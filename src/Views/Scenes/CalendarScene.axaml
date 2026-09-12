@@ -1,0 +1,21 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:vm="using:Violet.ViewModels"
+
+	x:Class="Violet.Views.CalendarScene"
+	x:DataType="vm:CalendarSceneModel"
+	
+	VerticalAlignment="Stretch"
+	HorizontalAlignment="Stretch"
+	Margin="25"
+>
+	<StackPanel Spacing="10" Margin="15">
+
+		<TextBlock Classes="standardBody">
+			"Hello brochachos!"
+		</TextBlock>
+
+    </StackPanel>
+		
+</UserControl>

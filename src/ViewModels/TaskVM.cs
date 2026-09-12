@@ -9,8 +9,13 @@ namespace Violet.ViewModels;
 
 public partial class TaskViewModel : ViewModelBase
 {
-	public Guid uuid;
+	// --> 1: CONSTS, STATICS, FIELDS {r}
+	//
 
+
+	// --> 2: PROPERTIES {y}
+	public Guid Uuid { get; }
+	
 	[ObservableProperty]
 	private string _description;
 
@@ -31,14 +36,29 @@ public partial class TaskViewModel : ViewModelBase
 	public string DateCreatedString => DateCreated.ToString("ddd, MMMM dd");
 	public string EstTimeString => EstimatedTime.ToString();
 
+
+	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
 	public TaskViewModel(Task task)
 	{
-		Description = task.description;
-		DateDue = task.dateDue;
-		DateCreated = task.dateCreated;
-		EstimatedTime = task.estimatedTime;
-
-		uuid = task.uuid;
+		Description = task.Description;
+		DateDue = task.DateDue;
+		DateCreated = task.DateCreated;
+		EstimatedTime = task.EstimatedTime;
+		Uuid = task.Uuid;
 	}
+
+	public override void Dispose()
+	{
+		// nothing to destruct
+	}
+
+
+	// --> 4: PUBLIC METHODS {b}
+	//
+
+
+	// --> 5: PRIVATE METHODS {v}
+	//
+
 
 }

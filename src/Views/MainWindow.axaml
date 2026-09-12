@@ -17,28 +17,24 @@
         <vm:MainViewModel />
     </Design.DataContext>
 
-    <!--
-    <Window.DataTemplates>
-
-        <DataTemplate DataType="vm:TasklistViewModel">
-            <views:TasklistView />
-        </DataTemplate>
-
-    </Window.DataTemplates>
-    -->
     
     <Grid ColumnDefinitions="Auto *" RowDefinitions="*">
+        <!-- {r} SIDEBAR -->
         <views:SidebarView
             DataContext="{Binding SidebarVM}"
             Grid.Column="0" 
             Grid.Row="0"
         />
 
+
+        <!-- {v} SCENE -->
         <ContentControl 
             Content="{Binding CurrentPage}"
             Grid.Column="1"
             Grid.Row="0"
         />
+
+
     </Grid>
 
 </Window>

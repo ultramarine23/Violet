@@ -1,13 +1,17 @@
-using System;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using Violet.Pages;
 using Violet.Services;
-using Violet.ViewModels;
 using Violet.Views;
 
 namespace Violet;
+
+
+/* {#fff}
+{ CLASS DESCRIPTION }
+	App is the root of the entire program, and the owner of
+*/
+
 
 public enum PageName
 {
@@ -18,36 +22,42 @@ public enum PageName
 
 public partial class App : Application
 {
-    public Backend Backend { get; private set; }
-    public NavigationService Navigation { get; private set; }
+    private const PageName InitialPage = PageName.TASKLIST;
     
+    // The Three Holy Relics: the major components of App
+    private readonly Backend _backend;
+    private readonly NavigationService _navigation;
+    private MainWindow? _mainWindow;
+    
+
+    // --> CONSTRUCTOR {r}
     public App()
     {
-        Backend = new Backend();
-        Navigation = new NavigationService(Backend);
+        _backend = new Backend();
+        _navigation = new NavigationService(_backend);
+        _mainWindow = null;
     }
 
 
+    // --> INITIALIZER {y}
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
     }
 
+
+    // --> MAIN WINDOW LOADER {b}
+    // this is run once at the start of the program, after initialization
     public override void OnFrameworkInitializationCompleted()
     {        
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {            
-            var mainWindow = new MainWindow();
-            Navigation.InjectMainWindow(mainWindow);
-
-            desktop.MainWindow = mainWindow;
-            // desktop.MainWindow.DataContext 
-            // {
-            //     DataContext = new TasklistViewModel(new TasklistComposer())
-            // };
+            _mainWindow = new MainWindow();
+            desktop.MainWindow = _mainWindow;
+            _navigation.InjectMainWindow(_mainWindow);
         }
 
-        Navigation.NavigateToPage(PageName.TASKLIST);
+        _navigation.NavigateToPage(InitialPage);
 
         base.OnFrameworkInitializationCompleted();
     }

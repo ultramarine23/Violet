@@ -3,24 +3,32 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using Avalonia.Collections;
 using CommunityToolkit.Mvvm.Input;
 using Violet.Models;
 using Violet.Pages;
-using Violet.Services;
-using Violet.Views;
 
 namespace Violet.ViewModels;
 
-public partial class TasklistViewModel : ViewModelBase
+/* {#fff}
+{ CLASS DESCRIPTION }
+	TasklistSceneModel is the VM connecting the TasklistComposer 
+	and TasklistScene.
+*/
+
+
+public partial class TasklistSceneModel : ViewModelBase
 {
+	// --> 1: CONSTS, STATICS, FIELDS {r}
 	private readonly TasklistComposer _tasklistPage;
 	private readonly AppDataReadOnly _appData;
 	
+
+	// --> 2: PROPERTIES {y}
 	public ObservableCollection<TaskViewModel> TaskViewModels { get; }
 
 
-	public TasklistViewModel(TasklistComposer tasksPage)
+	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
+	public TasklistSceneModel(TasklistComposer tasksPage)
 	{
 		_tasklistPage = tasksPage;
 		_appData = tasksPage.appData;
@@ -41,8 +49,27 @@ public partial class TasklistViewModel : ViewModelBase
 		}
 	}
 
+	public override void Dispose()
+	{
+		// unsubscribe from notification system before being freed
+		if (_appData.Tasks is INotifyCollectionChanged notif)
+		{
+			notif.CollectionChanged -= SyncTaskVMs;
+		}
+	}
 
-	public void SyncTaskVMs(object? sender, NotifyCollectionChangedEventArgs e)
+
+	// --> 4: PUBLIC METHODS {b}
+	[RelayCommand]
+	public void AddTask()
+	{
+		_tasklistPage.AddTask();
+	}
+	
+
+
+	// --> 5: PRIVATE METHODS {v}
+	private void SyncTaskVMs(object? sender, NotifyCollectionChangedEventArgs e)
 	{
 		switch (e.Action)
         {
@@ -57,10 +84,10 @@ public partial class TasklistViewModel : ViewModelBase
 				var uuidsForDeletion = new HashSet<Guid>();
 				foreach (Task item in e.OldItems!)
 				{
-					uuidsForDeletion.Add(item.uuid);
+					uuidsForDeletion.Add(item.Uuid);
 				}
 
-				var deletions = TaskViewModels.Where((vm) => uuidsForDeletion.Contains(vm.uuid));
+				var deletions = TaskViewModels.Where((vm) => uuidsForDeletion.Contains(vm.Uuid));
                 foreach (TaskViewModel vm in deletions)
 				{
 					TaskViewModels.Remove(vm);
@@ -78,9 +105,4 @@ public partial class TasklistViewModel : ViewModelBase
 	}
 
 
-	[RelayCommand]
-	public void AddTask()
-	{
-		_tasklistPage.AddTask();
-	}
 }
