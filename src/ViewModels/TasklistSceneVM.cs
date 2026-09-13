@@ -13,15 +13,15 @@ namespace Violet.ViewModels;
 
 /* {#fff}
 { CLASS DESCRIPTION }
-	TasklistSceneModel is the VM connecting the TasklistComposer 
+	TasklistSceneViewModel is the VM connecting the TasklistScene 
 	and TasklistScene.
 */
 
 
-public partial class TasklistSceneModel : ViewModelBase
+public partial class TasklistSceneViewModel : ViewModelBase
 {
 	// --> 1: CONSTS, STATICS, FIELDS {r}
-	private readonly TasklistComposer _tasklistPage;
+	private readonly TasklistScene _tasklistPage;
 	private readonly AppDataReadOnly _appData;
 	private readonly TaskService _taskService;
 	
@@ -34,7 +34,7 @@ public partial class TasklistSceneModel : ViewModelBase
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public TasklistSceneModel(TasklistComposer tasksPage, TaskService taskService)
+	public TasklistSceneViewModel(TasklistScene tasksPage, TaskService taskService)
 	{
 		_tasklistPage = tasksPage;
 		_appData = tasksPage.appData;

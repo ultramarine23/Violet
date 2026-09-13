@@ -47,7 +47,7 @@ public partial class MainViewModel : ViewModelBase
 
 
 	// --> 4: PUBLIC METHODS {b}
-	public void DisplaySceneModel(ViewModelBase sceneModel)
+	public void DisplaySceneVM(ViewModelBase sceneModel)
 	{
 		// no need to do anything on top of this; the ObservableProperty
 		// will automatically update the MainView.

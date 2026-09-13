@@ -6,27 +6,25 @@ namespace Violet;
 
 public class Backend
 {
-    // --> 
+    // --> APP DATA {r}
     private AppData _data;
-
     public AppDataReadOnly ReadOnlyData { get; set; }
-	public ComposerBase? CurrentPage { get; set; }
 
 
-    // --> SERVICES {g}
+    // --> SERVICES {y}
     public TaskService TaskService { get; set; }
 
 
-    // --> CONSTRUCTOR {v}
+    // --> CONSTRUCTOR {b}
     public Backend()
     {
 		_data = new AppData();
-        
-        CurrentPage = null;
         ReadOnlyData = _data.ReadOnly;
 
         TaskService = new TaskService(_data);
     } 
 
 
+    // --> maybe SAVE/LOAD here later? {v}
+    //
 }

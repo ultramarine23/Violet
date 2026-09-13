@@ -9,7 +9,7 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Scenes\" />
-    <Folder Include="Composers\" />
+    <Folder Include="Scenes\" />
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
 

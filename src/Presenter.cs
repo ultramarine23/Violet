@@ -75,20 +75,16 @@ public class Presenter
 		switch (page)
 		{
 			case PageName.TASKLIST:
-				var tlComposer = new TasklistComposer(_backend.ReadOnlyData, _backend.TaskService);
-				var tlViewmodel = tlComposer.SceneModel;
-
-				_backend.CurrentPage = tlComposer;
-				ChangeCurrentComposerVM(tlViewmodel);
+				var tlScene = new TasklistScene(_backend.ReadOnlyData, _backend.TaskService);
+				var tlViewmodel = tlScene.SceneVM;
+				ChangeCurrentSceneVM(tlViewmodel);
 	
 				break;
 		
 			case PageName.CALENDAR:
-				var clComposer = new CalendarComposer(_backend.ReadOnlyData);
-				var clViewmodel = new CalendarSceneModel(clComposer);
-
-				_backend.CurrentPage = clComposer;
-				ChangeCurrentComposerVM(clViewmodel);
+				var clScene = new CalendarScene(_backend.ReadOnlyData);
+				var clViewmodel = clScene.SceneVM;
+				ChangeCurrentSceneVM(clViewmodel);
 
 				break;
 		}
@@ -97,8 +93,8 @@ public class Presenter
 
 	// --> 5: INTERNAL METHODS {v}
 	// largely an implementation detail of NavigateToPage()
-	// switches the Composer VM currently being displayed in the main window
-	private void ChangeCurrentComposerVM(ViewModelBase sceneModel)
+	// switches the Scene VM currently being displayed in the main window
+	private void ChangeCurrentSceneVM(ViewModelBase sceneModel)
 	{
 		if (_mainWindow == null) return;
 		
@@ -112,7 +108,7 @@ public class Presenter
 		else
 		{
 			// interact with the existing MVM
-			mvm.DisplaySceneModel(sceneModel);
+			mvm.DisplaySceneVM(sceneModel);
 		}
 	}
 }

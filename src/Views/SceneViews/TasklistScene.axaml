@@ -4,8 +4,8 @@
 	xmlns:vm="using:Violet.ViewModels"
 	xmlns:views="using:Violet.Views"
 
-	x:Class="Violet.Views.TasklistScene"
-	x:DataType="vm:TasklistSceneModel"
+	x:Class="Violet.Views.TasklistSceneView"
+	x:DataType="vm:TasklistSceneViewModel"
 
 	VerticalAlignment="Stretch"
 	HorizontalAlignment="Stretch"

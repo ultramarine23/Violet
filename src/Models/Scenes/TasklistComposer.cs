@@ -8,12 +8,12 @@ namespace Violet.Scenes;
 
 /* {#fff}
 { CLASS DESCRIPTION }
-	TasklistComposer is the composer for the TasklistScene.
-	(see [ComposerBase] for more details)
+	TasklistScene is the scene for the TasklistScene.
+	(see [SceneBase] for more details)
 */
 
 
-public class TasklistComposer : ComposerBase
+public class TasklistScene : SceneBase
 {
 	// --> 1: CONSTS, STATICS, FIELDS {r}
 	private TaskService _taskService;
@@ -21,16 +21,16 @@ public class TasklistComposer : ComposerBase
 
 
 	// --> 2: PROPERTIES {y}
-	public ViewModelBase SceneModel { get; }
+	public ViewModelBase SceneVM { get; }
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public TasklistComposer(AppDataReadOnly appData, TaskService taskService)
+	public TasklistScene(AppDataReadOnly appData, TaskService taskService)
 	{
 		this.appData = appData;
 		_taskService = taskService;
 
-		SceneModel = new TasklistSceneModel(this, _taskService);
+		SceneVM = new TasklistSceneViewModel(this, _taskService);
 	}
 
 

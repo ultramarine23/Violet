@@ -5,15 +5,15 @@ namespace Violet.ViewModels;
 
 /* {#fff}
 { CLASS DESCRIPTION }
-	CalendarSceneModel is the VM connecting the CalendarComposer 
+	CalendarSceneViewModel is the VM connecting the CalendarScene 
 	and CalendarScene.
 */
 
 
-public partial class CalendarSceneModel : ViewModelBase
+public partial class CalendarSceneViewModel : ViewModelBase
 {
 	// --> 1: CONSTS, STATICS, FIELDS {r}
-	private readonly CalendarComposer _tasksPage;
+	private readonly CalendarScene _tasksPage;
 	
 
 	// --> 2: PROPERTIES {y}
@@ -21,9 +21,9 @@ public partial class CalendarSceneModel : ViewModelBase
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public CalendarSceneModel(CalendarComposer calendarComposer)
+	public CalendarSceneViewModel(CalendarScene calendarScene)
 	{
-		_tasksPage = calendarComposer;
+		_tasksPage = calendarScene;
 	}
 
 	public override void Dispose()

@@ -7,27 +7,27 @@ namespace Violet.Scenes;
 
 /* {#fff}
 { CLASS DESCRIPTION }
-	CalendarComposer is the composer for the CalendarScene.
-	(see [ComposerBase] for more details)
+	CalendarScene is the scene for the CalendarScene.
+	(see [SceneBase] for more details)
 */
 
 
-public class CalendarComposer : ComposerBase
+public class CalendarScene : SceneBase
 {
 	// --> 1: CONSTS, STATICS, FIELDS {r}
 	private AppDataReadOnly _appData;
 	
 
 	// --> 2: PROPERTIES {y}
-	public ViewModelBase SceneModel { get; }
+	public ViewModelBase SceneVM { get; }
 	
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public CalendarComposer(AppDataReadOnly appData)
+	public CalendarScene(AppDataReadOnly appData)
 	{
 		_appData = appData;
 
-		SceneModel = new CalendarSceneModel(this);
+		SceneVM = new CalendarSceneViewModel(this);
 	}
 
 
