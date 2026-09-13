@@ -18,20 +18,22 @@ public enum TaskSortMode
 }
 
 
-public class TaskService : ITaskEditor, ITaskListOperator, ITaskListOrganizer
+public class TaskService : ServiceBase
 {
 	// --> 1: INTERNALS {r}	
 	private readonly AppData _appData;
 
 
 	// --> 2: PROPERTIES {y}
-	//
+	public override string ServiceId { get; }
 
 
 	// --> 3: CONSTRUCTOR {g}
 	public TaskService(AppData appData)
 	{
 		_appData = appData;
+
+		ServiceId = "task";
 	}
 
 

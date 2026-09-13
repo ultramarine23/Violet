@@ -10,7 +10,7 @@ public partial class TaskAdderViewModel : ViewModelBase
 {
 	// --> 1: CONSTS, STATICS, FIELDS {r}
 	private readonly AppDataReadOnly _appData;
-	private readonly ITaskListOperator _tasklistOperator;
+	private readonly TaskService _taskService;
 
 
 	// --> 2: PROPERTIES {y}
@@ -19,9 +19,9 @@ public partial class TaskAdderViewModel : ViewModelBase
 	
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public TaskAdderViewModel(ITaskListOperator tasklistOperator)
+	public TaskAdderViewModel(TaskService taskService)
 	{
-		_tasklistOperator = tasklistOperator;
+		_taskService = taskService;
 
 		NewDescription = "";
 	}
@@ -42,7 +42,7 @@ public partial class TaskAdderViewModel : ViewModelBase
 			TimeSpan.FromHours(6)
 		);
 		var newTask = new Task(taskData);
-		_tasklistOperator.AddTask(newTask);
+		_taskService.AddTask(newTask);
 	}
 
 

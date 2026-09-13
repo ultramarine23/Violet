@@ -1,23 +1,21 @@
 using System;
 using System.Collections.Generic;
 using Violet.Models;
-using Violet.Services;
 using Violet.ViewModels;
 
 namespace Violet.Scenes;
 
 /* {#fff}
 { CLASS DESCRIPTION }
-	TasklistScene is the scene for the TasklistScene.
+	CalendarScene is the scene for the CalendarScene.
 	(see [SceneBase] for more details)
 */
 
 
-public class TasklistScene : SceneBase
+public class CalendarScene : SceneBase
 {
 	// --> 1: CONSTS, STATICS, FIELDS {r}
-	private TaskService _taskService;
-	private AppDataReadOnly _appData;
+	// inherits protected AppDataReadOnly _readOnlyData;
 
 
 	// --> 2: PROPERTIES {y}
@@ -25,12 +23,9 @@ public class TasklistScene : SceneBase
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public TasklistScene(AppDataReadOnly appData, TaskService taskService)
+	public TasklistScene(AppDataReadOnly readOnlyData) : base(readOnlyData)
 	{
-		_appData = appData;
-		_taskService = taskService;
-
-		SceneVM = new TasklistSceneViewModel(this, _appData, _taskService);
+		SceneVM = new CalendarSceneViewModel(this, readOnlyData);
 	}
 
 
