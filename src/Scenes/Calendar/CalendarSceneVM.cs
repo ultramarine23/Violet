@@ -12,8 +12,8 @@ namespace Violet.ViewModels;
 
 public partial class CalendarSceneViewModel : ViewModelBase
 {
-	// --> 1: CONSTS, STATICS, FIELDS {r}
-	private readonly CalendarScene _tasksPage;
+	// --> 1: INTERNALS {r}
+	private readonly CalendarDependencies _dependencies;
 	
 
 	// --> 2: PROPERTIES {y}
@@ -21,9 +21,9 @@ public partial class CalendarSceneViewModel : ViewModelBase
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public CalendarSceneViewModel(CalendarScene calendarScene)
+	public CalendarSceneViewModel(CalendarDependencies dependencies)
 	{
-		_tasksPage = calendarScene;
+		_dependencies = dependencies;
 	}
 
 	public override void Dispose()
@@ -32,13 +32,12 @@ public partial class CalendarSceneViewModel : ViewModelBase
 	}
 	
 
-	// --> 4: PUBLIC METHODS {b}
+	// --> 4: RELAY METHODS {b}
 	// empty... for now >:))
 
 
-	// --> 5: PRIVATE METHODS {v}
+	// --> 5: INTERNAL METHODS {v}
 	// empty... for now >:))
-
 
 
 }

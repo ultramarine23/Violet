@@ -13,7 +13,7 @@ namespace Violet.Utils;
 
 public static class DateFormatter
 {
-	// --> 1: CONSTS, STATICS, FIELDS {r}
+	// --> 1: INTERNALS {r}
 	// the maximum distance to a raw until [GetRelativeDate] gives up
 	private const int RELATIVE_THRESHOLD = 30;
 

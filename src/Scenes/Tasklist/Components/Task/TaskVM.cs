@@ -1,14 +1,15 @@
 using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Violet.Models;
+using Violet.Scenes;
 using Violet.Utils;
 
 namespace Violet.ViewModels;
 
 public partial class TaskViewModel : ViewModelBase
 {
-	// --> 1: CONSTS, STATICS, FIELDS {r}
-	//
+	// --> 1: INTERNALS {r}
+	private readonly TasklistDependencies _dependencies;
 
 
 	// --> 2: PROPERTIES {y}
@@ -36,8 +37,10 @@ public partial class TaskViewModel : ViewModelBase
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public TaskViewModel(Task task)
+	public TaskViewModel(TasklistDependencies dependencies, Task task)
 	{
+		_dependencies = dependencies;
+
 		Description = task.Data.Description;
 		DateDue = task.Data.DateDue;
 		DateCreated = task.Data.DateCreated;
@@ -51,11 +54,11 @@ public partial class TaskViewModel : ViewModelBase
 	}
 
 
-	// --> 4: PUBLIC METHODS {b}
+	// --> 4: RELAY METHODS {b}
 	//
 
 
-	// --> 5: PRIVATE METHODS {v}
+	// --> 5: INTERNAL METHODS {v}
 	//
 
 

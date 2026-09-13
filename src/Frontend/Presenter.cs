@@ -24,7 +24,7 @@ public enum PageName
 
 public class Presenter
 {	
-	// --> 1: CONSTS, STATICS, FIELDS {r}
+	// --> 1: INTERNALS {r}
 	private const PageName InitialPage = PageName.TASKLIST;
 	
 	private readonly Backend _backend;

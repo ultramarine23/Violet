@@ -11,7 +11,7 @@ namespace Violet.ViewModels;
 public partial class SidebarViewModel : ViewModelBase
 {
 
-	// --> 1: CONSTS, STATICS, FIELDS {r}
+	// --> 1: INTERNALS {r}
 	private readonly Presenter _presenter;
 
 

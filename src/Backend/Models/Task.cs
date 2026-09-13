@@ -10,7 +10,7 @@ namespace Violet.Models;
 
 public class Task
 {
-	// --> 1: CONSTS, STATICS, FIELDS {r}
+	// --> 1: INTERNALS {r}
 	
 
 	

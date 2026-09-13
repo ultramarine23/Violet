@@ -14,7 +14,7 @@
 	<StackPanel Spacing="10" Margin="15">
 
 		<views:TaskAdderView DataContext="{Binding TaskAdderVM}"/>
-		<ItemsControl ItemsSource="{Binding TaskViewModels}" />
+		<views:TaskInspectorView DataContext="{Binding TaskInspectorVM}" />
 
     </StackPanel>
 		

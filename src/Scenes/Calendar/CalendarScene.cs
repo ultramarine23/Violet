@@ -14,18 +14,29 @@ namespace Violet.Scenes;
 
 public class CalendarScene : SceneBase
 {
-	// --> 1: CONSTS, STATICS, FIELDS {r}
-	// inherits protected AppDataReadOnly _readOnlyData;
+	// --> 1: INTERNALS {r}
+	private readonly AppDataReadOnly _readOnlyData;
+	private readonly CalendarSAPI _sceneApi;
+
+	private readonly CalendarDependencies _dependencies;
 
 
-	// --> 2: PROPERTIES {y}
-	public ViewModelBase SceneVM { get; }
+	// --> 2: PROPERTIES (VMs) {y}
+	public CalendarSceneViewModel SceneVM { get; }
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public TasklistScene(AppDataReadOnly readOnlyData) : base(readOnlyData)
+	public CalendarScene(AppDataReadOnly readOnlyData) : base()
 	{
-		SceneVM = new CalendarSceneViewModel(this, readOnlyData);
+		_readOnlyData = readOnlyData;
+		_sceneApi = new CalendarSAPI(this);
+
+		_dependencies = new CalendarDependencies(
+			_readOnlyData, 
+			_sceneApi
+		);
+
+		SceneVM = new CalendarSceneViewModel(_dependencies);
 	}
 
 
@@ -33,6 +44,6 @@ public class CalendarScene : SceneBase
 	//
 
 
-	// --> 5: PRIVATE METHODS {v}
+	// --> 5: INTERNAL METHODS {v}
 	//
 }

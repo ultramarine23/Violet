@@ -3,14 +3,14 @@ using Violet.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Violet.Services;
+using Violet.Scenes;
 
 namespace Violet.ViewModels;
 
 public partial class TaskAdderViewModel : ViewModelBase
 {
-	// --> 1: CONSTS, STATICS, FIELDS {r}
-	private readonly AppDataReadOnly _appData;
-	private readonly TaskService _taskService;
+	// --> 1: INTERNALS {r}
+	private readonly TasklistDependencies _dependencies;
 
 
 	// --> 2: PROPERTIES {y}
@@ -19,9 +19,9 @@ public partial class TaskAdderViewModel : ViewModelBase
 	
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public TaskAdderViewModel(TaskService taskService)
+	public TaskAdderViewModel(TasklistDependencies dependencies)
 	{
-		_taskService = taskService;
+		_dependencies = dependencies;
 
 		NewDescription = "";
 	}
@@ -41,13 +41,14 @@ public partial class TaskAdderViewModel : ViewModelBase
 			DateTime.Now.AddDays(5),
 			TimeSpan.FromHours(6)
 		);
+
 		var newTask = new Task(taskData);
-		_taskService.AddTask(newTask);
+		_dependencies.TaskService.AddTask(newTask);
 	}
 
 
 	// --> 5: INTERNAL METHODS {v}
-	//
+	
 
 
 }

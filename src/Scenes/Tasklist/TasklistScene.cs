@@ -16,20 +16,32 @@ namespace Violet.Scenes;
 
 public class TasklistScene : SceneBase
 {
-	// --> 1: CONSTS, STATICS, FIELDS {r}
-	// inherits AppDataReadOnly _readOnlyData;
+	// --> 1: INTERNALS {r}
+	private readonly AppDataReadOnly _readOnlyData;
+	private readonly TasklistSAPI _sceneApi;
+	private readonly TaskService _taskService;
+
+	private readonly TasklistDependencies _dependencies;
 
 
-	// --> 2: PROPERTIES {y}
-	public TaskService TaskService { get; }
-	public ViewModelBase SceneVM { get; }
+	// --> 2: PROPERTIES (VMs) {y}
+	public TasklistSceneViewModel SceneVM { get; }
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public TasklistScene(AppDataReadOnly readOnlyData, TaskService taskService) : base(readOnlyData)
+	public TasklistScene(AppDataReadOnly readOnlyData, TaskService taskService) : base()
 	{
-		TaskService = taskService;
-		SceneVM = new TasklistSceneViewModel(this, readOnlyData, TaskService);
+		_readOnlyData = readOnlyData;
+		_taskService = taskService;
+		_sceneApi = new TasklistSAPI(this);
+
+		_dependencies = new TasklistDependencies(
+			_readOnlyData, 
+			_sceneApi, 
+			_taskService
+		);
+
+		SceneVM = new TasklistSceneViewModel(_dependencies);
 	}
 
 
@@ -37,6 +49,6 @@ public class TasklistScene : SceneBase
 	//
 
 
-	// --> 5: PRIVATE METHODS {v}
+	// --> 5: INTERNAL METHODS {v}
 	//
 }

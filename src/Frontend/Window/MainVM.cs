@@ -14,7 +14,7 @@ namespace Violet.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
-	// --> 1: CONSTS, STATICS, FIELDS {r}
+	// --> 1: INTERNALS {r}
 	private Presenter _presenter;
 	
 

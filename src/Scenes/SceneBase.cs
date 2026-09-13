@@ -15,13 +15,11 @@ using Violet.Services;
 
 public abstract class SceneBase
 {
-	protected AppDataReadOnly _readOnlyData;
 	protected Dictionary<KeyBinding, List<Action>> _keyBindings;
 
 
-	protected SceneBase(AppDataReadOnly readOnlyData)
+	protected SceneBase()
 	{
-		_readOnlyData = readOnlyData;
 		_keyBindings = new Dictionary<KeyBinding, List<Action>>();
 	}
 
