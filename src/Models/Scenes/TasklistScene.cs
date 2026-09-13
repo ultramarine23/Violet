@@ -17,7 +17,7 @@ public class TasklistScene : SceneBase
 {
 	// --> 1: CONSTS, STATICS, FIELDS {r}
 	private TaskService _taskService;
-	public AppDataReadOnly appData;
+	private AppDataReadOnly _appData;
 
 
 	// --> 2: PROPERTIES {y}
@@ -27,10 +27,10 @@ public class TasklistScene : SceneBase
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
 	public TasklistScene(AppDataReadOnly appData, TaskService taskService)
 	{
-		this.appData = appData;
+		_appData = appData;
 		_taskService = taskService;
 
-		SceneVM = new TasklistSceneViewModel(this, _taskService);
+		SceneVM = new TasklistSceneViewModel(this, _appData, _taskService);
 	}
 
 

@@ -9,6 +9,7 @@ namespace Violet.ViewModels;
 public partial class TaskAdderViewModel : ViewModelBase
 {
 	// --> 1: CONSTS, STATICS, FIELDS {r}
+	private readonly AppDataReadOnly _appData;
 	private readonly ITaskListOperator _tasklistOperator;
 
 

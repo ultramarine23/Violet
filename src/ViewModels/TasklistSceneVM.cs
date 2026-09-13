@@ -21,9 +21,10 @@ namespace Violet.ViewModels;
 public partial class TasklistSceneViewModel : ViewModelBase
 {
 	// --> 1: CONSTS, STATICS, FIELDS {r}
-	private readonly TasklistScene _tasklistPage;
 	private readonly AppDataReadOnly _appData;
 	private readonly TaskService _taskService;
+
+	private readonly TasklistScene _tasklistPage;
 	
 
 	// --> 2: PROPERTIES {y}
@@ -34,10 +35,10 @@ public partial class TasklistSceneViewModel : ViewModelBase
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public TasklistSceneViewModel(TasklistScene tasksPage, TaskService taskService)
+	public TasklistSceneViewModel(TasklistScene tasksPage, AppDataReadOnly appData, TaskService taskService)
 	{
 		_tasklistPage = tasksPage;
-		_appData = tasksPage.appData;
+		_appData = appData;
 		_taskService = taskService;
 
 		// initialize the Task VM list
