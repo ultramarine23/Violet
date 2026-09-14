@@ -12,7 +12,9 @@
         CornerRadius="4"
         Padding="10"
 	>
-        <ItemsControl ItemsSource="{Binding TaskViewModels}" HorizontalAlignment="Stretch" />
+        <StackPanel>
+            <ItemsControl ItemsSource="{Binding TaskViewModels}" HorizontalAlignment="Stretch" />
+        </StackPanel>
     </Border>
 
 	

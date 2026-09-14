@@ -13,23 +13,47 @@
         Padding="15"
 		Margin="0 5"
 	>
-        <Grid ColumnDefinitions="32 *" RowDefinitions="Auto Auto">
+        <Grid ColumnDefinitions="32 * 48" RowDefinitions="Auto Auto">
 			<!-- {r} CHECKBOX -->
-			<CheckBox Grid.Column="0" Grid.RowSpan="2" />
+			<CheckBox 
+				Grid.Column="0" 
+				Grid.RowSpan="2"
+				VerticalAlignment="Center"
+				HorizontalAlignment="Center"
+			/>
 
 
-			<!-- {g} HEADER (DESCRIPTION) -->
+			<!-- {y} HEADER (DESCRIPTION) -->
 			<Border Grid.Column="1" Grid.Row="0">
 				<TextBlock Classes="standardBody" Text="{Binding Description}" />
 			</Border>
 
 
-			<!-- {v} SUBTITLE -->
+			<!-- {g} SUBTITLE -->
 			<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
 				<TextBlock Classes="muteBody" Text="due on: " />
 				<TextBlock Classes="muteBody" Text="{Binding DateDueString}" />
 			</StackPanel>
 
+			
+			<!-- {v} DELETE BUTTON -->	
+			<Button
+				Classes="deleteButton"
+				Grid.Column="2"
+				Grid.RowSpan="2"
+				VerticalAlignment="Stretch"
+				HorizontalAlignment="Stretch"
+				Command="{Binding DeleteSelfCommand}"
+			>
+				<Svg 
+					Path="/Assets/Icons/ic--outline-delete.svg"
+					Width="20"
+					Height="20"
+					HorizontalAlignment="Center"
+				/>
+			</Button>
+			
+			
 			
 		</Grid>
     </Border>

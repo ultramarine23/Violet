@@ -22,6 +22,9 @@
         <Color x:Key="AccentPressed">#573a72</Color>
         <Color x:Key="Accent">#8758b3</Color>
         <Color x:Key="AccentHover">#A867F2</Color>
+        <Color x:Key="Red">#f26b50</Color>
+        <Color x:Key="DarkRed">#a63a24</Color>
+        <Color x:Key="Yellow">#f2d250</Color>
 
 
         <!-- {white} Brush Variables -->
@@ -33,6 +36,9 @@
         <SolidColorBrush x:Key="AccentPressedBrush" Color="{DynamicResource AccentPressed}" />
         <SolidColorBrush x:Key="AccentBrush" Color="{DynamicResource Accent}" />
         <SolidColorBrush x:Key="AccentHoverBrush" Color="{DynamicResource AccentHover}" />
+        <SolidColorBrush x:Key="RedBrush" Color="{DynamicResource Red}" />
+        <SolidColorBrush x:Key="YellowBrush" Color="{DynamicResource Yellow}" />
+        <SolidColorBrush x:Key="DarkRedBrush" Color="{DynamicResource DarkRed}" />
 
 
         <!-- {white} Layout/Spacing Variables -->
@@ -134,6 +140,25 @@
 
             <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
                 <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
+            </Style>
+        </Style>
+
+        <Style Selector="Button.deleteButton">
+            <Setter Property="Background" Value="{DynamicResource ElevatedBrush}"/>
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+
+            <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource RedBrush}" />
+            </Style>
+
+            <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource DarkRedBrush}" />
+            </Style>
+
+            <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource DarkRedBrush}" />
             </Style>
         </Style>
 

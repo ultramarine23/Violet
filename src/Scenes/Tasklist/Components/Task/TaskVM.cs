@@ -1,5 +1,6 @@
 using System;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Violet.Models;
 using Violet.Scenes;
 using Violet.Utils;
@@ -10,6 +11,7 @@ public partial class TaskViewModel : ViewModelBase
 {
 	// --> 1: INTERNALS {r}
 	private readonly TasklistDependencies _dependencies;
+	private readonly Task _task;
 
 
 	// --> 2: PROPERTIES {y}
@@ -40,6 +42,7 @@ public partial class TaskViewModel : ViewModelBase
 	public TaskViewModel(TasklistDependencies dependencies, Task task)
 	{
 		_dependencies = dependencies;
+		_task = task;
 
 		Description = task.Data.Description;
 		DateDue = task.Data.DateDue;
@@ -55,7 +58,11 @@ public partial class TaskViewModel : ViewModelBase
 
 
 	// --> 4: RELAY METHODS {b}
-	//
+	[RelayCommand]
+	public void DeleteSelf()
+	{
+		_dependencies.TaskService.RemoveTask(_task);
+	}
 
 
 	// --> 5: INTERNAL METHODS {v}

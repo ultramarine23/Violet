@@ -11,19 +11,30 @@
         Background="{DynamicResource MidgroundBrush}"
         CornerRadius="4"
         Padding="10"
+        VerticalAlignment="Stretch"
+        HorizontalAlignment="Stretch"
 	>
-        <StackPanel Orientation="Horizontal">
+        <Grid ColumnDefinitions="* 48" RowDefinitions="32" ColumnSpacing="5">
             <TextBox
+                Grid.Column="0"
+                Grid.Row="0"
                 PlaceholderText="Enter task description..."
                 PlaceholderForeground="{DynamicResource ElevatedBrush}"
                 Text="{Binding NewDescription}"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                VerticalContentAlignment="Center"
             />
 
             <Button
+                Grid.Column="1"
+                Grid.Row="0"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
                 Content="{SvgImage /Assets/Icons/ic--outline-add.svg}"
                 Command="{Binding AddTaskCommand}"
             />
-        </StackPanel>
+        </Grid>
     </Border>
 
 	
