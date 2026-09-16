@@ -7,13 +7,55 @@
 	VerticalAlignment="Stretch"
 	HorizontalAlignment="Stretch"
 >
-    <Border
-        Background="{DynamicResource ElevatedBrush}"
+	<!-- STYLES {gray} -->
+    <UserControl.Styles>
+		<Style Selector="Button.deleteButton">
+            <Setter Property="Background" Value="{DynamicResource ElevatedBrush}"/>
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+
+            <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource RedBrush}" />
+            </Style>
+
+            <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource DarkRedBrush}" />
+            </Style>
+
+            <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource DarkRedBrush}" />
+            </Style>
+        </Style>
+
+		<Style Selector="Button.editButton">
+            <Setter Property="Background" Value="{DynamicResource ElevatedBrush}"/>
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+
+            <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource YellowBrush}" />
+            </Style>
+
+            <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource DarkYellowBrush}" />
+            </Style>
+
+            <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource DarkYellowBrush}" />
+            </Style>
+        </Style>
+	</UserControl.Styles>
+
+
+	<Border
+        Background="{DynamicResource ForegroundBrush}"
         CornerRadius="4"
         Padding="15"
 		Margin="0 5"
 	>
-        <Grid ColumnDefinitions="32 * 48" RowDefinitions="Auto Auto">
+        <Grid ColumnDefinitions="32 * 48 48" RowDefinitions="Auto Auto" ColumnSpacing="5">
 			<!-- {r} CHECKBOX -->
 			<CheckBox 
 				Grid.Column="0" 
@@ -25,7 +67,16 @@
 
 			<!-- {y} HEADER (DESCRIPTION) -->
 			<Border Grid.Column="1" Grid.Row="0">
-				<TextBlock Classes="standardBody" Text="{Binding Description}" />
+				<TextBox 
+					Classes="standardBody" 
+					Text="{Binding Description}"
+					IsReadOnly="{Binding ReadMode}"
+					Background="Transparent"
+					BorderThickness="0"
+					Padding="0"
+					HorizontalContentAlignment="Left"
+					VerticalContentAlignment="Center"
+				/>
 			</Border>
 
 
@@ -36,10 +87,28 @@
 			</StackPanel>
 
 			
+			<!-- {b} EDIT BUTTON -->	
+			<Button
+				Classes="editButton"
+				Grid.Column="2"
+				Grid.RowSpan="2"
+				VerticalAlignment="Stretch"
+				HorizontalAlignment="Stretch"
+				Command="{Binding StartEditCommand}"
+			>
+				<Svg 
+					Path="/Assets/Icons/ic--outline-edit.svg"
+					Width="20"
+					Height="20"
+					HorizontalAlignment="Center"
+				/>
+			</Button>
+			
+
 			<!-- {v} DELETE BUTTON -->	
 			<Button
 				Classes="deleteButton"
-				Grid.Column="2"
+				Grid.Column="3"
 				Grid.RowSpan="2"
 				VerticalAlignment="Stretch"
 				HorizontalAlignment="Stretch"
@@ -52,9 +121,8 @@
 					HorizontalAlignment="Center"
 				/>
 			</Button>
-			
-			
-			
+
+
 		</Grid>
     </Border>
 

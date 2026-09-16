@@ -11,6 +11,7 @@
 	HorizontalAlignment="Stretch"
 	Margin="25"
 >
+
 	<StackPanel Spacing="10" Margin="15">
 
 		<views:TaskAdderView DataContext="{Binding TaskAdderVM}"/>

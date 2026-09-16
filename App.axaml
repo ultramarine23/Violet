@@ -1,7 +1,5 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:vm="using:Violet.ViewModels"
-             xmlns:views="using:Violet.Views"
              x:Class="Violet.App"
              xmlns:local="using:Violet"
              RequestedThemeVariant="Dark"
@@ -16,29 +14,52 @@
         <!-- {white} Color Variables -->                  
         <Color x:Key="Background">#29262f</Color>
         <Color x:Key="Midground">#312d37</Color>
-        <Color x:Key="Elevated">#3c3744</Color>
+        <Color x:Key="Foreground">#3c3744</Color>
+        <Color x:Key="Elevated">#635F69</Color>
         <Color x:Key="PrimaryText">#d5d5d5</Color>
         <Color x:Key="SecondaryText">#bebac4</Color>
         <Color x:Key="AccentPressed">#573a72</Color>
         <Color x:Key="Accent">#8758b3</Color>
         <Color x:Key="AccentHover">#A867F2</Color>
-        <Color x:Key="Red">#f26b50</Color>
-        <Color x:Key="DarkRed">#a63a24</Color>
-        <Color x:Key="Yellow">#f2d250</Color>
+        <Color x:Key="Red">#FF595E</Color>
+        <Color x:Key="Orange">#FF924C</Color>
+        <Color x:Key="Yellow">#FFCA3A</Color>
+        <Color x:Key="Green">#8AC926</Color>
+        <Color x:Key="Blue">#1982C4</Color>
+        <Color x:Key="Indigo">#4267AC</Color>
+        <Color x:Key="Violet">#6A4C93</Color>
+        <Color x:Key="DarkRed">#CC2D32</Color>
+        <Color x:Key="DarkOrange">#CC6A2D</Color>
+        <Color x:Key="DarkYellow">#CCA331</Color>
+        <Color x:Key="DarkGreen">#5D8025</Color>
+        <Color x:Key="DarkBlue">#1B5375</Color>
+        <Color x:Key="DarkIndigo">#33476B</Color>
+        <Color x:Key="DarkViolet">#3F3252</Color>
 
 
         <!-- {white} Brush Variables -->
         <SolidColorBrush x:Key="BackgroundBrush" Color="{DynamicResource Background}" />
         <SolidColorBrush x:Key="MidgroundBrush" Color="{DynamicResource Midground}" />
-        <SolidColorBrush x:Key="ElevatedBrush" Color="{DynamicResource Elevated}" />
+        <SolidColorBrush x:Key="ForegroundBrush" Color="{DynamicResource Foreground}" />
         <SolidColorBrush x:Key="PrimaryTextBrush" Color="{DynamicResource PrimaryText}" />
         <SolidColorBrush x:Key="SecondaryTextBrush" Color="{DynamicResource SecondaryText}" />
         <SolidColorBrush x:Key="AccentPressedBrush" Color="{DynamicResource AccentPressed}" />
         <SolidColorBrush x:Key="AccentBrush" Color="{DynamicResource Accent}" />
         <SolidColorBrush x:Key="AccentHoverBrush" Color="{DynamicResource AccentHover}" />
         <SolidColorBrush x:Key="RedBrush" Color="{DynamicResource Red}" />
+        <SolidColorBrush x:Key="OrangeBrush" Color="{DynamicResource Orange}" />
         <SolidColorBrush x:Key="YellowBrush" Color="{DynamicResource Yellow}" />
+        <SolidColorBrush x:Key="GreenBrush" Color="{DynamicResource Green}" />
+        <SolidColorBrush x:Key="BlueBrush" Color="{DynamicResource Blue}" />
+        <SolidColorBrush x:Key="IndigoBrush" Color="{DynamicResource Indigo}" />
+        <SolidColorBrush x:Key="VioletBrush" Color="{DynamicResource Violet}" />
         <SolidColorBrush x:Key="DarkRedBrush" Color="{DynamicResource DarkRed}" />
+        <SolidColorBrush x:Key="DarkOrangeBrush" Color="{DynamicResource DarkOrange}" />
+        <SolidColorBrush x:Key="DarkYellowBrush" Color="{DynamicResource DarkYellow}" />
+        <SolidColorBrush x:Key="DarkGreenBrush" Color="{DynamicResource DarkGreen}" />
+        <SolidColorBrush x:Key="DarkBlueBrush" Color="{DynamicResource DarkBlue}" />
+        <SolidColorBrush x:Key="DarkIndigoBrush" Color="{DynamicResource DarkIndigo}" />
+        <SolidColorBrush x:Key="DarkVioletBrush" Color="{DynamicResource DarkViolet}" />
 
 
         <!-- {white} Layout/Spacing Variables -->
@@ -123,7 +144,7 @@
         </Style>
 
         <Style Selector="Button.sidebarButton">
-            <Setter Property="Background" Value="{DynamicResource ElevatedBrush}"/>
+            <Setter Property="Background" Value="{DynamicResource ForegroundBrush}"/>
             <Setter Property="Margin" Value="0" />
             <Setter Property="CornerRadius" Value="10" />
             <Setter Property="Height" Value="50" />
@@ -143,23 +164,18 @@
             </Style>
         </Style>
 
-        <Style Selector="Button.deleteButton">
-            <Setter Property="Background" Value="{DynamicResource ElevatedBrush}"/>
-            <Setter Property="Margin" Value="0" />
-            <Setter Property="CornerRadius" Value="10" />
-            <Setter Property="HorizontalAlignment" Value="Center" />
 
-            <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Background" Value="{DynamicResource RedBrush}" />
-            </Style>
+        <!-- TEXTBOX STYLES {g} -->
+        <Style Selector="TextBox.standardBody">
+            <Setter Property="Foreground" Value="{DynamicResource SecondaryText}" />
+            <Setter Property="FontSize" Value="{StaticResource BodyFont}" />
+        </Style>
 
-            <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Background" Value="{DynamicResource DarkRedBrush}" />
-            </Style>
-
-            <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Background" Value="{DynamicResource DarkRedBrush}" />
-            </Style>
+        <Style Selector="TextBox.muteBody">
+            <Setter Property="Foreground" Value="{DynamicResource SecondaryText}" />
+            <Setter Property="FontSize" Value="{StaticResource BodyFont}" />
+            <Setter Property="FontStyle" Value="Italic" />
+            <Setter Property="Opacity" Value="0.67" />
         </Style>
 
 

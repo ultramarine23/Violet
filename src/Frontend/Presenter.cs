@@ -33,6 +33,8 @@ public class Presenter
 	// DOES NOT own main vm: they are synced together by the presenter
 	private MainWindow? _mainWindow;
 	private MainViewModel? _mainVM;
+
+	private KeybindManager _keybindManager;
 	
 
 	// --> 2: PROPERTIES {y}
@@ -42,6 +44,7 @@ public class Presenter
 	// --> 3: CONSTRUCTOR, DEPENDENCY INJECTIONS {g}
 	public Presenter(Backend backend)
 	{
+		_keybindManager = new KeybindManager();
 		_backend = backend;
 	}
 
@@ -49,7 +52,7 @@ public class Presenter
 	public void GenerateMainWindow(IClassicDesktopStyleApplicationLifetime desktop)
 	{
 		// initialize a MainWindow and a MainVM
-		_mainWindow = new MainWindow();
+		_mainWindow = new MainWindow(_keybindManager);
 		_mainVM = new MainViewModel(this);
 
 		// set MainWindow as the actual window of the app
@@ -75,14 +78,14 @@ public class Presenter
 		switch (page)
 		{
 			case PageName.TASKLIST:
-				var tlScene = new TasklistScene(_backend.ReadOnlyData, _backend.TaskService);
+				var tlScene = new TasklistScene(_backend.ReadOnlyData, _backend.TaskService, _keybindManager);
 				var tlViewmodel = tlScene.SceneVM;
 				ChangeCurrentSceneVM(tlViewmodel);
 	
 				break;
 		
 			case PageName.CALENDAR:
-				var clScene = new CalendarScene(_backend.ReadOnlyData);
+				var clScene = new CalendarScene(_backend.ReadOnlyData, _keybindManager);
 				var clViewmodel = clScene.SceneVM;
 				ChangeCurrentSceneVM(clViewmodel);
 

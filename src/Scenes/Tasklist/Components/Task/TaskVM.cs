@@ -1,4 +1,5 @@
 using System;
+using Avalonia.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Violet.Models;
@@ -32,6 +33,9 @@ public partial class TaskViewModel : ViewModelBase
 	[NotifyPropertyChangedFor(nameof(EstTimeString))]
 	private TimeSpan _estimatedTime;
 
+	[ObservableProperty]
+	private bool _readMode;
+
 	// --> VM-only properties
 	public string DateDueString => DateFormatter.GetRelativeDate(DateDue);
 	public string DateCreatedString => DateCreated.ToString("ddd, MMMM dd");
@@ -49,6 +53,8 @@ public partial class TaskViewModel : ViewModelBase
 		DateCreated = task.Data.DateCreated;
 		EstimatedTime = task.Data.EstimatedTime;
 		Uuid = task.Uuid;
+
+		ReadMode = true;
 	}
 
 	public override void Dispose()
@@ -64,6 +70,35 @@ public partial class TaskViewModel : ViewModelBase
 		_dependencies.TaskService.RemoveTask(_task);
 	}
 
+	[RelayCommand]
+	public void StartEdit()
+	{
+		ReadMode = false;
+
+		_dependencies.SceneApi.RegisterKeybind(
+			new KeyGesture(Key.Enter),
+			EndEdit
+		);
+		_dependencies.SceneApi.RegisterKeybind(
+			new KeyGesture(Key.Delete),
+			DeleteSelf
+		);
+	}
+
+	public void EndEdit()
+	{
+		ReadMode = true;
+
+		_dependencies.SceneApi.UnregisterKeybind(
+			new KeyGesture(Key.Enter),
+			EndEdit
+		);
+		_dependencies.SceneApi.UnregisterKeybind(
+			new KeyGesture(Key.Delete),
+			DeleteSelf
+		);
+	}
+	
 
 	// --> 5: INTERNAL METHODS {v}
 	//

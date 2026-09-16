@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Avalonia.Controls;
 using Avalonia.Input;
 using Violet;
 using Violet.Services;
@@ -15,35 +16,23 @@ using Violet.Services;
 
 public abstract class SceneBase
 {
-	protected Dictionary<KeyBinding, List<Action>> _keyBindings;
+	protected KeybindManager _keybindManager;
 
 
-	protected SceneBase()
+	protected SceneBase(KeybindManager keybindManager)
 	{
-		_keyBindings = new Dictionary<KeyBinding, List<Action>>();
+		_keybindManager = keybindManager;
 	}
 
 	
-	public void SubscribeToKeybind(KeyBinding keyBinding, Action callback)
+	public void SubscribeToKeybind(KeyGesture keyGesture, Action callback)
 	{
-		if (!_keyBindings.ContainsKey(keyBinding))
-		{
-			_keyBindings[keyBinding] = new List<Action>();
-		}
-		
-		var actionList = _keyBindings[keyBinding];
-		actionList.Add(callback);
+		_keybindManager.Register(keyGesture, callback);		
 	}
 
-	public void UnsubscribeToKeybind(KeyBinding keyBinding, Action callback)
+	public void UnsubscribeToKeybind(KeyGesture keyGesture, Action callback)
 	{
-		if (!_keyBindings.ContainsKey(keyBinding))
-		{
-			return;
-		}
-		
-		var actionList = _keyBindings[keyBinding];
-		actionList.Remove(callback);
+		_keybindManager.Unregister(keyGesture, callback);
 	}
 }
 

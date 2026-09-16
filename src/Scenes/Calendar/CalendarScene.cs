@@ -26,7 +26,7 @@ public class CalendarScene : SceneBase
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public CalendarScene(AppDataReadOnly readOnlyData) : base()
+	public CalendarScene(AppDataReadOnly readOnlyData, KeybindManager keybindManager) : base(keybindManager)
 	{
 		_readOnlyData = readOnlyData;
 		_sceneApi = new CalendarSAPI(this);

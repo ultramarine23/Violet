@@ -16,8 +16,13 @@ public class TasklistSAPI : SAPIBase
 
 
 	// --> SAPI METHODS {b}
-	public void RegisterKeybind(KeyBinding keyBinding, Action callback)
+	public void RegisterKeybind(KeyGesture keyGesture, Action callback)
 	{
-		_scene.SubscribeToKeybind(keyBinding, callback);
+		_scene.SubscribeToKeybind(keyGesture, callback);
+	}
+
+	public void UnregisterKeybind(KeyGesture keyGesture, Action callback)
+	{
+		_scene.UnsubscribeToKeybind(keyGesture, callback);
 	}
 }

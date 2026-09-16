@@ -19,7 +19,7 @@
                 Grid.Column="0"
                 Grid.Row="0"
                 PlaceholderText="Enter task description..."
-                PlaceholderForeground="{DynamicResource ElevatedBrush}"
+                PlaceholderForeground="{DynamicResource ForegroundBrush}"
                 Text="{Binding NewDescription}"
                 VerticalAlignment="Stretch"
                 HorizontalAlignment="Stretch"

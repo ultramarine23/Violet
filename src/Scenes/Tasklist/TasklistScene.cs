@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Avalonia.Input;
 using Violet.Models;
 using Violet.Services;
@@ -29,7 +30,7 @@ public class TasklistScene : SceneBase
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public TasklistScene(AppDataReadOnly readOnlyData, TaskService taskService) : base()
+	public TasklistScene(AppDataReadOnly readOnlyData, TaskService taskService, KeybindManager keybindManager) : base(keybindManager)
 	{
 		_readOnlyData = readOnlyData;
 		_taskService = taskService;
