@@ -4,7 +4,8 @@
 	xmlns:vm="using:Violet.ViewModels"
 	x:Class="Violet.Views.TaskView"
 	x:DataType="vm:TaskViewModel"
-	VerticalAlignment="Stretch"
+	VerticalAlignment="Center"
+	Height="64"
 	HorizontalAlignment="Stretch"
 >
 	<!-- STYLES {gray} -->
@@ -52,7 +53,7 @@
 	<Border
         Background="{DynamicResource ForegroundBrush}"
         CornerRadius="4"
-        Padding="15"
+        Padding="5"
 		Margin="0 5"
 	>
         <Grid ColumnDefinitions="32 * 48 48" RowDefinitions="Auto Auto" ColumnSpacing="5">
@@ -71,11 +72,13 @@
 					Classes="standardBody" 
 					Text="{Binding Description}"
 					IsReadOnly="{Binding ReadMode}"
+					IsHitTestVisible="{Binding !ReadMode}"
 					Background="Transparent"
 					BorderThickness="0"
 					Padding="0"
 					HorizontalContentAlignment="Left"
-					VerticalContentAlignment="Center"
+					VerticalContentAlignment="Bottom"
+					Height="10"
 				/>
 			</Border>
 

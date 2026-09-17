@@ -169,11 +169,13 @@
         <Style Selector="TextBox.standardBody">
             <Setter Property="Foreground" Value="{DynamicResource SecondaryText}" />
             <Setter Property="FontSize" Value="{StaticResource BodyFont}" />
+            <Setter Property="LineHeight" Value="{StaticResource BodyFont}" />
         </Style>
 
         <Style Selector="TextBox.muteBody">
             <Setter Property="Foreground" Value="{DynamicResource SecondaryText}" />
             <Setter Property="FontSize" Value="{StaticResource BodyFont}" />
+            <Setter Property="LineHeight" Value="{StaticResource BodyFont}" />
             <Setter Property="FontStyle" Value="Italic" />
             <Setter Property="Opacity" Value="0.67" />
         </Style>

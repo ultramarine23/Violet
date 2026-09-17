@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace Violet.ViewModels;
 
-public partial class TaskInspectorViewModel : ViewModelBase
+public partial class KanbanColumnViewModel : ViewModelBase
 {
 	// --> 1: INTERNALS {r}
 	private readonly TasklistDependencies _dependencies;
@@ -21,7 +21,7 @@ public partial class TaskInspectorViewModel : ViewModelBase
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public TaskInspectorViewModel(TasklistDependencies dependencies)
+	public KanbanColumnViewModel(TasklistDependencies dependencies)
 	{
 		_dependencies = dependencies;
 

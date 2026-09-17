@@ -21,7 +21,12 @@ public class ViewLocator : IDataTemplate
         
         
         var name = param.GetType().FullName!.Replace("ViewModel", "View", StringComparison.Ordinal);
-        
+
+        if (name.EndsWith("VM"))
+        {
+            name = name[..^1] + "V";
+        }
+
         // --> this part has been modified to accommodate for scenes {b}
         // if (name.EndsWith("ViewModel"))
         // {

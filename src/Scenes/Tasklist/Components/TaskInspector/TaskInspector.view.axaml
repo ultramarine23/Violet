@@ -1,0 +1,33 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:vm="using:Violet.ViewModels"
+	x:Class="Violet.Views.TaskInspectorView"
+	x:DataType="vm:TaskInspectorViewModel"
+	VerticalAlignment="Stretch"
+	HorizontalAlignment="Stretch"
+>
+    <Border
+        CornerRadius="4"
+        Padding="10"
+	>
+        <Grid ColumnDefinitions="* * *" ColumnSpacing="10">
+            <ContentControl
+                Content="{Binding PriorityColumnVM}"
+                Grid.Column="0"
+            />
+
+            <ContentControl
+                Content="{Binding ProgressColumnVM}"
+                Grid.Column="1"
+            />
+
+            <ContentControl
+                Content="{Binding BacklogColumnVM}"
+                Grid.Column="2"
+            />
+        </Grid>    
+    </Border>
+
+	
+</UserControl>
