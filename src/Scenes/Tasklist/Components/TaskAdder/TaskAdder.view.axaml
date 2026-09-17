@@ -10,7 +10,6 @@
     <Border
         Background="{DynamicResource MidgroundBrush}"
         CornerRadius="4"
-        Padding="10"
         VerticalAlignment="Stretch"
         HorizontalAlignment="Stretch"
 	>

@@ -9,7 +9,6 @@
 >
     <Border
         CornerRadius="4"
-        Padding="10"
 	>
         <Grid ColumnDefinitions="* * *" ColumnSpacing="10">
             <ContentControl

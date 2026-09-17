@@ -12,7 +12,7 @@
 	Margin="25"
 >
 
-	<StackPanel Spacing="10" Margin="15">
+	<StackPanel Spacing="10">
 
 		<views:TaskAdderView DataContext="{Binding TaskAdderVM}"/>
 		<views:TaskInspectorView DataContext="{Binding TaskInspectorVM}" />

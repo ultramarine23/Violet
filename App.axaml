@@ -15,7 +15,8 @@
         <Color x:Key="Background">#29262f</Color>
         <Color x:Key="Midground">#312d37</Color>
         <Color x:Key="Foreground">#3c3744</Color>
-        <Color x:Key="Elevated">#635F69</Color>
+        <Color x:Key="Elevated">#46414E</Color>
+        <Color x:Key="Elevated2">#635F69</Color>
         <Color x:Key="PrimaryText">#d5d5d5</Color>
         <Color x:Key="SecondaryText">#bebac4</Color>
         <Color x:Key="AccentPressed">#573a72</Color>
@@ -23,14 +24,14 @@
         <Color x:Key="AccentHover">#A867F2</Color>
         <Color x:Key="Red">#FF595E</Color>
         <Color x:Key="Orange">#FF924C</Color>
-        <Color x:Key="Yellow">#FFCA3A</Color>
+        <Color x:Key="Yellow">#C59F35</Color>
         <Color x:Key="Green">#8AC926</Color>
         <Color x:Key="Blue">#1982C4</Color>
         <Color x:Key="Indigo">#4267AC</Color>
         <Color x:Key="Violet">#6A4C93</Color>
         <Color x:Key="DarkRed">#CC2D32</Color>
         <Color x:Key="DarkOrange">#CC6A2D</Color>
-        <Color x:Key="DarkYellow">#CCA331</Color>
+        <Color x:Key="DarkYellow">#8F752F</Color>
         <Color x:Key="DarkGreen">#5D8025</Color>
         <Color x:Key="DarkBlue">#1B5375</Color>
         <Color x:Key="DarkIndigo">#33476B</Color>
@@ -41,6 +42,8 @@
         <SolidColorBrush x:Key="BackgroundBrush" Color="{DynamicResource Background}" />
         <SolidColorBrush x:Key="MidgroundBrush" Color="{DynamicResource Midground}" />
         <SolidColorBrush x:Key="ForegroundBrush" Color="{DynamicResource Foreground}" />
+        <SolidColorBrush x:Key="ElevatedBrush" Color="{DynamicResource Elevated}" />
+        <SolidColorBrush x:Key="Elevated2Brush" Color="{DynamicResource Elevated2}" />
         <SolidColorBrush x:Key="PrimaryTextBrush" Color="{DynamicResource PrimaryText}" />
         <SolidColorBrush x:Key="SecondaryTextBrush" Color="{DynamicResource SecondaryText}" />
         <SolidColorBrush x:Key="AccentPressedBrush" Color="{DynamicResource AccentPressed}" />
@@ -75,6 +78,11 @@
 
     <Application.Styles>
         <FluentTheme />
+
+        <Style Selector="Window">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="0" />
+        </Style>
 
         <!-- {r} TEXTBLOCK STYLES -->
         <Style Selector="TextBlock">
@@ -169,7 +177,14 @@
         <Style Selector="TextBox.standardBody">
             <Setter Property="Foreground" Value="{DynamicResource SecondaryText}" />
             <Setter Property="FontSize" Value="{StaticResource BodyFont}" />
-            <Setter Property="LineHeight" Value="{StaticResource BodyFont}" />
+
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="MinHeight" Value="0" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
 
         <Style Selector="TextBox.muteBody">
@@ -178,7 +193,15 @@
             <Setter Property="LineHeight" Value="{StaticResource BodyFont}" />
             <Setter Property="FontStyle" Value="Italic" />
             <Setter Property="Opacity" Value="0.67" />
+
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="MinHeight" Value="0" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
         </Style>
+
 
 
     </Application.Styles>

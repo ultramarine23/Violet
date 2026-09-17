@@ -5,15 +5,18 @@
     xmlns:vm="using:Violet.ViewModels"
 	x:Class="Violet.Views.SidebarView"
     x:DataType="vm:SidebarViewModel"
+
 	VerticalAlignment="Stretch"
-	HorizontalAlignment="Center"
+	HorizontalAlignment="Stretch"
+    Padding="20 0"
+    Background="{DynamicResource MidgroundBrush}"
 >
 	<Design.DataContext>
         <vm:SidebarViewModel />
     </Design.DataContext>
 
     
-    <Border Background="{DynamicResource MidgroundBrush}" Padding="20 0">
+    <Border HorizontalAlignment="Stretch">
 		<Grid RowDefinitions="50 *" ColumnDefinitions="Auto" Margin="0 20">
             <!-- {r} LOGO -->
             <Image 

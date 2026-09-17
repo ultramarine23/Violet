@@ -5,7 +5,6 @@
 	x:Class="Violet.Views.TaskView"
 	x:DataType="vm:TaskViewModel"
 	VerticalAlignment="Center"
-	Height="64"
 	HorizontalAlignment="Stretch"
 >
 	<!-- STYLES {gray} -->
@@ -68,17 +67,11 @@
 
 			<!-- {y} HEADER (DESCRIPTION) -->
 			<Border Grid.Column="1" Grid.Row="0">
-				<TextBox 
-					Classes="standardBody" 
+				<TextBox
+					Classes="standardBody"
 					Text="{Binding Description}"
 					IsReadOnly="{Binding ReadMode}"
 					IsHitTestVisible="{Binding !ReadMode}"
-					Background="Transparent"
-					BorderThickness="0"
-					Padding="0"
-					HorizontalContentAlignment="Left"
-					VerticalContentAlignment="Bottom"
-					Height="10"
 				/>
 			</Border>
 

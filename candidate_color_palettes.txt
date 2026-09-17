@@ -1,0 +1,13 @@
+candidate color palettes
+
+purple bg, yellow highlights
+https://coolors.co/352e3d-443c4e-decade-ffc857-de9151
+
+full final
+https://coolors.co/29262f-312d37-3c3744-d5d5d5-bebac4-573a72-8758b3-bf8cfa
+
+light and dark rainbow
+https://coolors.co/ff595e-ff924c-ffca3a-8ac926-1982c4-4267ac-6a4c93
+https://coolors.co/cc2d32-cc6a2d-cca331-5d8025-1b5375-33476b-3f3252
+
+can avalonia windows be built through composition like in React? like utilizing smaller components and reusing them throughout different windows? how do i even switch from the main entry point window to a new window?
