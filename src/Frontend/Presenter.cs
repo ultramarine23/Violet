@@ -2,6 +2,7 @@ using System;
 using System.Globalization;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data;
+using Avalonia.Input;
 using Violet.Scenes;
 using Violet.ViewModels;
 using Violet.Views;
@@ -67,6 +68,16 @@ public class Presenter
 
 
 	// --> 4: MAIN API METHODS {b}
+	public void MoveFocus(NavigationDirection direction)
+	{
+		if (_mainWindow == null)
+		{
+			return;
+		}
+
+		_mainWindow.FocusManager.TryMoveFocus(direction);
+	}
+
 	public void NavigateToPage(PageName page)
 	{
 		if (_mainWindow == null)

@@ -38,7 +38,7 @@ public partial class TaskAdderViewModel : ViewModelBase
 	{
 		var taskData = new TaskData(
 			NewDescription,
-			DateTime.Now.AddDays(5),
+			DateTime.Now.AddDays(3),
 			TimeSpan.FromHours(6)
 		);
 

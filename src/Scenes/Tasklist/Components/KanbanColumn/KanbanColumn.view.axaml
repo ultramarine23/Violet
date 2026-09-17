@@ -13,6 +13,13 @@
         Padding="10"
 	>
         <StackPanel>
+            <TextBlock
+                Classes="standardBody"
+                FontSize="14"
+                FontWeight="Bold"
+                Margin="5"
+                Text="{Binding ColumnName}"
+            />
             <ItemsControl ItemsSource="{Binding TaskViewModels}" HorizontalAlignment="Stretch" />
         </StackPanel>
     </Border>

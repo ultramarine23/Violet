@@ -54,69 +54,106 @@
         CornerRadius="4"
         Padding="5"
 		Margin="0 5"
-	>
-        <Grid ColumnDefinitions="32 * 48 48" RowDefinitions="Auto Auto" ColumnSpacing="5">
+	>	
+		<Grid ColumnDefinitions="32 * 48" RowDefinitions="Auto" ColumnSpacing="5" Margin="5">
 			<!-- {r} CHECKBOX -->
 			<CheckBox 
 				Grid.Column="0" 
-				Grid.RowSpan="2"
-				VerticalAlignment="Center"
+				Grid.Row="0"
+				VerticalAlignment="Top"
 				HorizontalAlignment="Center"
 			/>
 
 
-			<!-- {y} HEADER (DESCRIPTION) -->
-			<Border Grid.Column="1" Grid.Row="0">
-				<TextBox
-					Classes="standardBody"
-					Text="{Binding Description}"
-					IsReadOnly="{Binding ReadMode}"
-					IsHitTestVisible="{Binding !ReadMode}"
-				/>
-			</Border>
+			<!-- {g} HEADER + SUBTITLE -->
+			<StackPanel Grid.Column="1" Grid.Row="0" Spacing="2">
+				<Border>
+					<TextBox
+						Classes="standardBody"
+						VerticalAlignment="Top"
+						Margin="0 6"
+						Text="{Binding Description}"
+						IsReadOnly="{Binding ReadMode}"
+						IsHitTestVisible="{Binding !ReadMode}"
+						Focusable="{Binding !ReadMode}"
+					/>
+				</Border>
 
+				<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+					<Svg 
+						Path="/Assets/Icons/ic--outline-calendar-month.svg"
+						Width="15"
+						Height="15"
+						HorizontalAlignment="Center"
+					/>
+					<TextBlock 
+						Classes="muteBody" 
+						Text="{Binding DateDueString}"
+						HorizontalAlignment="Center"
+						Padding="5 0"
+					/>
+				</StackPanel>
 
-			<!-- {g} SUBTITLE -->
-			<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-				<TextBlock Classes="muteBody" Text="due on: " />
-				<TextBlock Classes="muteBody" Text="{Binding DateDueString}" />
+				<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+					<Svg 
+						Path="/Assets/Icons/ic--outline-access-time.svg"
+						Width="15"
+						Height="15"
+						HorizontalAlignment="Center"
+					/>
+					<TextBlock 
+						Classes="muteBody" 
+						Text="{Binding EstTimeString}"
+						HorizontalAlignment="Center"
+						Padding="5 0"
+					/>
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+					<Svg 
+						Path="/Assets/Icons/ic--outline-hourglass-top.svg"
+						Width="15"
+						Height="15"
+						HorizontalAlignment="Center"
+					/>
+					<TextBlock 
+						Classes="muteBody" 
+						Text="{Binding RemainingTimeString}"
+						HorizontalAlignment="Center"
+						Padding="5 0"
+					/>
+				</StackPanel>
 			</StackPanel>
-
 			
-			<!-- {b} EDIT BUTTON -->	
-			<Button
-				Classes="editButton"
-				Grid.Column="2"
-				Grid.RowSpan="2"
-				VerticalAlignment="Stretch"
-				HorizontalAlignment="Stretch"
-				Command="{Binding StartEditCommand}"
-			>
-				<Svg 
-					Path="/Assets/Icons/ic--outline-edit.svg"
-					Width="20"
-					Height="20"
-					HorizontalAlignment="Center"
-				/>
-			</Button>
 			
+			<!-- {b} BUTTONS PANEL -->	
+			<StackPanel Grid.Column="2" Grid.RowSpan="2" Spacing="5" VerticalAlignment="Top">
+				<Button
+					Classes="editButton"
+					HorizontalAlignment="Stretch"
+					Command="{Binding StartEditCommand}"
+				>
+					<Svg 
+						Path="/Assets/Icons/ic--outline-edit.svg"
+						Width="20"
+						Height="20"
+						HorizontalAlignment="Center"
+					/>
+				</Button>
 
-			<!-- {v} DELETE BUTTON -->	
-			<Button
-				Classes="deleteButton"
-				Grid.Column="3"
-				Grid.RowSpan="2"
-				VerticalAlignment="Stretch"
-				HorizontalAlignment="Stretch"
-				Command="{Binding DeleteSelfCommand}"
-			>
-				<Svg 
-					Path="/Assets/Icons/ic--outline-delete.svg"
-					Width="20"
-					Height="20"
-					HorizontalAlignment="Center"
-				/>
-			</Button>
+				<Button
+					Classes="deleteButton"
+					HorizontalAlignment="Stretch"
+					Command="{Binding DeleteSelfCommand}"
+				>
+					<Svg 
+						Path="/Assets/Icons/ic--outline-delete.svg"
+						Width="20"
+						Height="20"
+						HorizontalAlignment="Center"
+					/>
+				</Button>
+			</StackPanel>		
 
 
 		</Grid>

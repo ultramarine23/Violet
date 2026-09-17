@@ -39,7 +39,10 @@ public partial class TaskViewModel : ViewModelBase
 	// --> VM-only properties
 	public string DateDueString => DateFormatter.GetRelativeDate(DateDue);
 	public string DateCreatedString => DateCreated.ToString("ddd, MMMM dd");
-	public string EstTimeString => EstimatedTime.ToString();
+	public string EstTimeString => FormatEstimatedTimeString();
+	public string RemainingTimeString => FormatRemainingTimeString();
+
+	public event Action? EditStateEnded;
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
@@ -97,11 +100,42 @@ public partial class TaskViewModel : ViewModelBase
 			new KeyGesture(Key.Delete),
 			DeleteSelf
 		);
+
+		EditStateEnded.Invoke();
 	}
 	
 
 	// --> 5: INTERNAL METHODS {v}
-	//
+	private string FormatEstimatedTimeString()
+	{
+		var hours = (int)EstimatedTime.TotalHours;
+		var minutes = EstimatedTime.Minutes;
 
+		if (hours >= 100)
+		{
+			return "over 100 hours";
+		}
+
+		if (minutes != 0)
+		{
+			return $"reserve {hours} hours and {minutes} mins";
+		}
+		else
+		{
+			return $"reserve {hours} hours";
+		}
+	}
+
+	private string FormatRemainingTimeString()
+	{
+		var remainingSpan = DateDue.Subtract(DateCreated) - EstimatedTime;
+		var formatted = $"latest start at {(int)remainingSpan.TotalHours}:{remainingSpan.Minutes}:{remainingSpan.Seconds}";
+
+		if (remainingSpan.TotalHours > 100)
+		{
+			formatted = "latest start >100 hours away";
+		}
+		return formatted;
+	}
 
 }

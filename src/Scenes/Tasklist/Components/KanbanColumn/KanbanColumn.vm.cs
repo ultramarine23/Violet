@@ -17,13 +17,17 @@ public partial class KanbanColumnViewModel : ViewModelBase
 
 
 	// --> 2: PROPERTIES {y}
+	[ObservableProperty]
+	private string _columnName;
+
 	public ObservableCollection<TaskViewModel> TaskViewModels { get; }
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public KanbanColumnViewModel(TasklistDependencies dependencies)
+	public KanbanColumnViewModel(TasklistDependencies dependencies, string colName)
 	{
 		_dependencies = dependencies;
+		ColumnName = colName;
 
 		TaskViewModels = new ObservableCollection<TaskViewModel>();
 		foreach (Task t in dependencies.ReadOnlyData.Tasks)

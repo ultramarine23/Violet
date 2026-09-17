@@ -33,9 +33,9 @@ public partial class TaskInspectorViewModel : ViewModelBase
 	{
 		_dependencies = dependencies;
 
-		PriorityColumnVM = new(_dependencies);
-		ProgressColumnVM = new(_dependencies);
-		BacklogColumnVM = new(_dependencies);
+		PriorityColumnVM = new(_dependencies, "Priority");
+		ProgressColumnVM = new(_dependencies, "In Progress");
+		BacklogColumnVM = new(_dependencies, "Backlog");
 	}
 
 	public override void Dispose()
