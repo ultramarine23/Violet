@@ -1,14 +1,17 @@
 using System;
+using System.Collections.Generic;
 
 namespace Violet.Models;
 
+
 public class TaskData
 {
-	public string Description 	  { get; set; }
-	public DateTime DateDue 	  { get; set; }
-	public DateTime DateCreated   { get; set; }
-	public TimeSpan EstimatedTime { get; set; }
-	public bool IsMarkedDone 	  { get; set; }
+	public string Description 	  { get; }
+	public DateTime DateDue 	  { get; }
+	public DateTime DateCreated   { get; }
+	public TimeSpan EstimatedTime { get; }
+	public List<string> Tags	  { get; }
+
 
 	public TaskData(
 		string description,
@@ -20,7 +23,7 @@ public class TaskData
 		DateDue = dateDue;
 		DateCreated = DateTime.Now;
 		EstimatedTime = estimatedTime;
-		IsMarkedDone = false;
+		Tags = [];
 	}
 
 	

@@ -8,6 +8,14 @@ namespace Violet.Models;
 */
 
 
+public enum TaskState
+{
+	COMPLETED,
+	IN_PROGRESS,
+	BACKLOG,
+}
+
+
 public class Task
 {
 	// --> 1: INTERNALS {r}
@@ -17,8 +25,11 @@ public class Task
 	// --> 2: PROPERTIES {y}
 	public Guid Uuid { get; }
 
+	// data that is non-state related is stored in TaskData, in order for
+	// editing to be easier to implement (just replace the TaskData)
 	public TaskData Data { get; set; }
-	
+	public TaskState State { get; set; }
+
 	public DateTime TrueDateDue => Data.DateDue.Subtract(Data.EstimatedTime);
 
 
@@ -27,6 +38,7 @@ public class Task
 	public Task(TaskData taskData)
 	{
 		Data = taskData;
+		State = TaskState.BACKLOG;
 	}
 
 
@@ -40,8 +52,10 @@ public class Task
 	// called via TaskService when the checkbox in the TaskView is ticked
 	public void MarkAsDone()
 	{
-		Data.IsMarkedDone = true;
+		State = TaskState.COMPLETED;
 	}
+
+
 
 
 	// --> 5: INTERNAL METHODS {v}

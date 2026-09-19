@@ -26,6 +26,7 @@ public class AppData
 	{
 		Tasks = new ObservableCollection<Task>();
 		TaskTags = new ObservableCollection<string>();
+		TaskTags.Add("CMSC128");
 		
 		ReadOnly = new AppDataReadOnly(this);
 	}

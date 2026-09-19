@@ -18,13 +18,13 @@ public partial class TaskInspectorViewModel : ViewModelBase
 
 	// --> 2: PROPERTIES {y}
 	[ObservableProperty]
-	private KanbanColumnViewModel _priorityColumnVM;
+	private KanbanColumnViewModel _backlogColumnVM;
 
 	[ObservableProperty]
 	private KanbanColumnViewModel _progressColumnVM;
 
 	[ObservableProperty]
-	private KanbanColumnViewModel _backlogColumnVM;
+	private KanbanColumnViewModel _completedColumnVM;
 	
 
 
@@ -33,9 +33,9 @@ public partial class TaskInspectorViewModel : ViewModelBase
 	{
 		_dependencies = dependencies;
 
-		PriorityColumnVM = new(_dependencies, "Priority");
-		ProgressColumnVM = new(_dependencies, "In Progress");
 		BacklogColumnVM = new(_dependencies, "Backlog");
+		ProgressColumnVM = new(_dependencies, "In Progress");
+		CompletedColumnVM = new(_dependencies, "Completed");
 	}
 
 	public override void Dispose()

@@ -16,7 +16,6 @@ public partial class TaskView : UserControl
 
     public void SyncToDataContext(object? sender, EventArgs e)
     {
-        Console.WriteLine("syncing to data context...");
         
         if (DataContext is TaskViewModel vm)
         {
@@ -26,8 +25,6 @@ public partial class TaskView : UserControl
         {
             return;
         }
-
-        Console.WriteLine("FOUND THE TASKVM");
     }
 
 

@@ -23,6 +23,7 @@ public partial class TaskViewModel : ViewModelBase
 
 	[ObservableProperty]
 	[NotifyPropertyChangedFor(nameof(DateDueString))]
+	[NotifyPropertyChangedFor(nameof(TimeDueString))]
 	private DateTime _dateDue;
 
 	[ObservableProperty]
@@ -34,13 +35,20 @@ public partial class TaskViewModel : ViewModelBase
 	private TimeSpan _estimatedTime;
 
 	[ObservableProperty]
+	[NotifyPropertyChangedFor(nameof(IsMarkedDone))]
+	private TaskState _currentState;
+
+	[ObservableProperty]
 	private bool _readMode;
 
 	// --> VM-only properties
+	// note: dependent/calculated properties use [NotifyPropertyChangedFor]
+	// instead of an [ObservableProperty] of their own
 	public string DateDueString => DateFormatter.GetRelativeDate(DateDue);
+	public string TimeDueString => DateDue.ToString("t");
 	public string DateCreatedString => DateCreated.ToString("ddd, MMMM dd");
 	public string EstTimeString => FormatEstimatedTimeString();
-	public string RemainingTimeString => FormatRemainingTimeString();
+	public bool IsMarkedDone => CurrentState == TaskState.COMPLETED;
 
 	public event Action? EditStateEnded;
 
@@ -55,6 +63,7 @@ public partial class TaskViewModel : ViewModelBase
 		DateDue = task.Data.DateDue;
 		DateCreated = task.Data.DateCreated;
 		EstimatedTime = task.Data.EstimatedTime;
+		CurrentState = task.State;
 		Uuid = task.Uuid;
 
 		ReadMode = true;
@@ -103,6 +112,19 @@ public partial class TaskViewModel : ViewModelBase
 
 		EditStateEnded.Invoke();
 	}
+
+	[RelayCommand]
+	public void ToggleCompletedState(bool toggleOn)
+	{
+		if (toggleOn == true)
+		{
+			CurrentState = TaskState.COMPLETED;
+		}
+		else
+		{
+			CurrentState = TaskState.BACKLOG;
+		}
+	}
 	
 
 	// --> 5: INTERNAL METHODS {v}
@@ -124,18 +146,6 @@ public partial class TaskViewModel : ViewModelBase
 		{
 			return $"reserve {hours} hours";
 		}
-	}
-
-	private string FormatRemainingTimeString()
-	{
-		var remainingSpan = DateDue.Subtract(DateCreated) - EstimatedTime;
-		var formatted = $"latest start at {(int)remainingSpan.TotalHours}:{remainingSpan.Minutes}:{remainingSpan.Seconds}";
-
-		if (remainingSpan.TotalHours > 100)
-		{
-			formatted = "latest start >100 hours away";
-		}
-		return formatted;
 	}
 
 }

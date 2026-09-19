@@ -12,7 +12,7 @@
 	>
         <Grid ColumnDefinitions="* * *" ColumnSpacing="10">
             <ContentControl
-                Content="{Binding PriorityColumnVM}"
+                Content="{Binding BacklogColumnVM}"
                 Grid.Column="0"
             />
 
@@ -22,7 +22,7 @@
             />
 
             <ContentControl
-                Content="{Binding BacklogColumnVM}"
+                Content="{Binding CompletedColumnVM}"
                 Grid.Column="2"
             />
         </Grid>    
