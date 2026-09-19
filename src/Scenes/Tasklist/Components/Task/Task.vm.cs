@@ -16,7 +16,7 @@ public partial class TaskViewModel : ViewModelBase
 
 
 	// --> 2: PROPERTIES {y}
-	public Guid Uuid { get; }
+	public Guid Uuid { get; private set; }
 	
 	[ObservableProperty]
 	private string _description;
@@ -53,27 +53,32 @@ public partial class TaskViewModel : ViewModelBase
 	public event Action? EditStateEnded;
 
 
-	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
+	// --> 3: INIT & SYNCHRONIZAION {g}
 	public TaskViewModel(TasklistDependencies dependencies, Task task)
 	{
 		_dependencies = dependencies;
 		_task = task;
 
-		Description = task.Data.Description;
-		DateDue = task.Data.DateDue;
-		DateCreated = task.Data.DateCreated;
-		EstimatedTime = task.Data.EstimatedTime;
-		CurrentState = task.State;
-		Uuid = task.Uuid;
-
+		RefreshData();
 		ReadMode = true;
+		_dependencies.TaskService.DataChanged += RefreshData;
 	}
 
 	public override void Dispose()
 	{
-		// nothing to destruct
+		_dependencies.TaskService.DataChanged -= RefreshData;
 	}
 
+	private void RefreshData()
+	{
+		Description = _task.Data.Description;
+		DateDue = _task.Data.DateDue;
+		DateCreated = _task.Data.DateCreated;
+		EstimatedTime = _task.Data.EstimatedTime;
+		CurrentState = _task.State;
+		Uuid = _task.Uuid;
+	}
+ 
 
 	// --> 4: RELAY METHODS {b}
 	[RelayCommand]
@@ -99,6 +104,15 @@ public partial class TaskViewModel : ViewModelBase
 
 	public void EndEdit()
 	{
+		_dependencies.TaskService.EditTaskData(
+			_task,
+			new TaskData(
+				Description,
+				_task.Data.DateDue,
+				_task.Data.EstimatedTime
+			)
+		);
+
 		ReadMode = true;
 
 		_dependencies.SceneApi.UnregisterKeybind(
@@ -110,7 +124,7 @@ public partial class TaskViewModel : ViewModelBase
 			DeleteSelf
 		);
 
-		EditStateEnded.Invoke();
+		EditStateEnded?.Invoke();
 	}
 
 	[RelayCommand]
@@ -118,11 +132,11 @@ public partial class TaskViewModel : ViewModelBase
 	{
 		if (toggleOn == true)
 		{
-			CurrentState = TaskState.COMPLETED;
+			_dependencies.TaskService.MarkTaskAsCompleted(_task);
 		}
 		else
 		{
-			CurrentState = TaskState.BACKLOG;
+			_dependencies.TaskService.MarkTaskAsBacklog(_task);
 		}
 	}
 	
@@ -147,5 +161,6 @@ public partial class TaskViewModel : ViewModelBase
 			return $"reserve {hours} hours";
 		}
 	}
+
 
 }

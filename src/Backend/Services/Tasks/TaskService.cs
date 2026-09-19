@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Violet.Models;
 
@@ -26,6 +27,7 @@ public class TaskService : ServiceBase
 
 	// --> 2: PROPERTIES {y}
 	public override string ServiceId { get; }
+	public event Action? DataChanged;
 
 
 	// --> 3: CONSTRUCTOR {g}
@@ -41,17 +43,20 @@ public class TaskService : ServiceBase
 	public void AddTask(Task task)
 	{
 		_appData.Tasks.Add(task);
+		DataChanged?.Invoke();
 	}
 
 	public void RemoveTask(Task task)
 	{
 		_appData.Tasks.Remove(task);
+		DataChanged?.Invoke();
 	}
 
 	public void MoveTask(Task task, int newPosition)
 	{
 		var i = _appData.Tasks.IndexOf(task);
 		_appData.Tasks.Move(i, newPosition);
+		DataChanged?.Invoke();
 	}
 
 	public void SortTasks(TaskSortMode mode)
@@ -65,16 +70,31 @@ public class TaskService : ServiceBase
 				_appData.Tasks.OrderBy(t => t.Data.DateCreated);
 				break;
 		}
+		DataChanged?.Invoke();
 	}
 
-	public void MarkTaskAsDone(Task task)
+	public void MarkTaskAsCompleted(Task task)
 	{
-		task.MarkAsDone();
+		task.ModifyState(TaskState.COMPLETED);
+		DataChanged?.Invoke();
+	}
+
+	public void MarkTaskAsBacklog(Task task)
+	{
+		task.ModifyState(TaskState.BACKLOG);
+		DataChanged?.Invoke();
+	}
+
+	public void MarkTaskAsInProgress(Task task)
+	{
+		task.ModifyState(TaskState.IN_PROGRESS);
+		DataChanged?.Invoke();
 	}
 
 	public void EditTaskData(Task task, TaskData taskData)
 	{
 		task.EditTaskDetails(taskData);
+		DataChanged?.Invoke();
 	}
 
 

@@ -50,9 +50,9 @@ public class Task
 	}
 
 	// called via TaskService when the checkbox in the TaskView is ticked
-	public void MarkAsDone()
+	public void ModifyState(TaskState newState)
 	{
-		State = TaskState.COMPLETED;
+		State = newState;
 	}
 
 
