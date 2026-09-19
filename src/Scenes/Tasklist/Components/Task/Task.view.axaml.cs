@@ -19,7 +19,7 @@ public partial class TaskView : UserControl
         
         if (DataContext is TaskViewModel vm)
         {
-            vm.EditStateEnded += LoseFocus;
+            vm?.EditStateEnded += LoseFocus;
         } 
         else
         {

@@ -27,10 +27,6 @@ public partial class TaskViewModel : ViewModelBase
 	private DateTime _dateDue;
 
 	[ObservableProperty]
-	[NotifyPropertyChangedFor(nameof(DateCreatedString))]
-	private DateTime _dateCreated;
-
-	[ObservableProperty]
 	[NotifyPropertyChangedFor(nameof(EstTimeString))]
 	private TimeSpan _estimatedTime;
 
@@ -46,7 +42,6 @@ public partial class TaskViewModel : ViewModelBase
 	// instead of an [ObservableProperty] of their own
 	public string DateDueString => DateFormatter.GetRelativeDate(DateDue);
 	public string TimeDueString => DateDue.ToString("t");
-	public string DateCreatedString => DateCreated.ToString("ddd, MMMM dd");
 	public string EstTimeString => FormatEstimatedTimeString();
 	public bool IsMarkedDone => CurrentState == TaskState.COMPLETED;
 
@@ -59,6 +54,7 @@ public partial class TaskViewModel : ViewModelBase
 		_dependencies = dependencies;
 		_task = task;
 
+		// initialize all properties; heed not the squiggly yellow line!		
 		RefreshData();
 		ReadMode = true;
 		_dependencies.TaskService.DataChanged += RefreshData;
@@ -73,7 +69,6 @@ public partial class TaskViewModel : ViewModelBase
 	{
 		Description = _task.Data.Description;
 		DateDue = _task.Data.DateDue;
-		DateCreated = _task.Data.DateCreated;
 		EstimatedTime = _task.Data.EstimatedTime;
 		CurrentState = _task.State;
 		Uuid = _task.Uuid;
@@ -104,15 +99,7 @@ public partial class TaskViewModel : ViewModelBase
 
 	public void EndEdit()
 	{
-		_dependencies.TaskService.EditTaskData(
-			_task,
-			new TaskData(
-				Description,
-				_task.Data.DateDue,
-				_task.Data.EstimatedTime
-			)
-		);
-
+		// stop ReadMode and unregister keybinds
 		ReadMode = true;
 
 		_dependencies.SceneApi.UnregisterKeybind(
@@ -125,6 +112,16 @@ public partial class TaskViewModel : ViewModelBase
 		);
 
 		EditStateEnded?.Invoke();
+
+		// mutate the task state {white, 8}
+		_dependencies.TaskService.EditTaskData(
+			_task,
+			new TaskData(
+				Description,
+				_task.Data.DateDue,
+				_task.Data.EstimatedTime
+			)
+		);
 	}
 
 	[RelayCommand]
