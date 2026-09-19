@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Avalonia.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -19,7 +20,7 @@ public partial class TaskViewModel : ViewModelBase
 	public Guid Uuid { get; private set; }
 	
 	[ObservableProperty]
-	private string _description;
+	private string _description = null!;
 
 	[ObservableProperty]
 	[NotifyPropertyChangedFor(nameof(DateDueString))]
@@ -86,32 +87,33 @@ public partial class TaskViewModel : ViewModelBase
 	public void StartEdit()
 	{
 		ReadMode = false;
+		_dependencies.FocusApi.GrabFocus(this);
 
-		_dependencies.SceneApi.RegisterKeybind(
+		_dependencies.KeybindApi.Register(
 			new KeyGesture(Key.Enter),
 			EndEdit
 		);
-		_dependencies.SceneApi.RegisterKeybind(
+		_dependencies.KeybindApi.Register(
 			new KeyGesture(Key.Delete),
 			DeleteSelf
 		);
 	}
 
+	[RelayCommand]
 	public void EndEdit()
 	{
 		// stop ReadMode and unregister keybinds
 		ReadMode = true;
+		_dependencies.FocusApi.ReleaseFocus();
 
-		_dependencies.SceneApi.UnregisterKeybind(
+		_dependencies.KeybindApi.Unregister(
 			new KeyGesture(Key.Enter),
 			EndEdit
 		);
-		_dependencies.SceneApi.UnregisterKeybind(
+		_dependencies.KeybindApi.Unregister(
 			new KeyGesture(Key.Delete),
 			DeleteSelf
 		);
-
-		EditStateEnded?.Invoke();
 
 		// mutate the task state {white, 8}
 		_dependencies.TaskService.EditTaskData(

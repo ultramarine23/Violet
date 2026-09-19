@@ -14,15 +14,20 @@ public class CalendarDependencies
 {
 	// --> add more dependencies here {r}
 	public AppDataReadOnly ReadOnlyData { get; }
-	public CalendarSAPI SceneApi { get; }
-
+	public SelectionAPI SelectionApi { get; }
+	public FocusAPI FocusApi { get; }
+	public KeybindAPI KeybindApi { get; }
 	
 	public CalendarDependencies(
 		AppDataReadOnly readOnlyData,
-		CalendarSAPI sceneApi
+		SelectionAPI selectionApi,
+		FocusAPI focusApi,
+		KeybindAPI keybindApi
 	)
 	{
 		ReadOnlyData = readOnlyData;
-		SceneApi = sceneApi;
+		SelectionApi = selectionApi;
+		FocusApi = focusApi;
+		KeybindApi = keybindApi;
 	}
 }

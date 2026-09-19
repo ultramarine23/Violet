@@ -29,6 +29,7 @@ public class Presenter
 	private const PageName InitialPage = PageName.TASKLIST;
 	
 	private readonly Backend _backend;
+	private ViewRegistry? _viewRegistry; // largely only here to be passed to focus controller
 
 	// presenter directly owns both main window and main vm; main window
 	// DOES NOT own main vm: they are synced together by the presenter
@@ -36,6 +37,11 @@ public class Presenter
 	private MainViewModel? _mainVM;
 
 	private KeybindManager _keybindManager;
+	private FocusController? _focusController;
+
+	// API versions of the above, to be injected into scenes and such
+	private KeybindAPI _keybindAPI;
+	private FocusAPI? _focusAPI;
 	
 
 	// --> 2: PROPERTIES {y}
@@ -43,10 +49,13 @@ public class Presenter
 
 
 	// --> 3: CONSTRUCTOR, DEPENDENCY INJECTIONS {g}
-	public Presenter(Backend backend)
+	public Presenter(Backend backend, ViewRegistry viewRegistry)
 	{
 		_keybindManager = new KeybindManager();
+		_keybindAPI = new KeybindAPI(_keybindManager);
+
 		_backend = backend;
+		_viewRegistry = viewRegistry;
 	}
 
 	// called by App after framework init, to start presentation
@@ -62,22 +71,16 @@ public class Presenter
 		// set MainVM as the VM of MainWindow
 		_mainWindow.DataContext = _mainVM;
 
+		// initialize MainWindow dependents
+		_focusController = new FocusController(_mainWindow.FocusManager, _viewRegistry);
+		_focusAPI = new FocusAPI(_focusController);
+
 		// switch to the intended landing page
 		NavigateToPage(InitialPage);
 	}
 
 
 	// --> 4: MAIN API METHODS {b}
-	public void MoveFocus(NavigationDirection direction)
-	{
-		if (_mainWindow == null)
-		{
-			return;
-		}
-
-		_mainWindow.FocusManager.TryMoveFocus(direction);
-	}
-
 	public void NavigateToPage(PageName page)
 	{
 		if (_mainWindow == null)
@@ -89,14 +92,25 @@ public class Presenter
 		switch (page)
 		{
 			case PageName.TASKLIST:
-				var tlScene = new TasklistScene(_backend.ReadOnlyData, _backend.TaskService, _keybindManager);
+				var tlScene = new TasklistScene(
+					_backend.ReadOnlyData, 
+					_backend.TaskService, 
+					_keybindAPI,
+					_focusAPI!
+					);
+				
 				var tlViewmodel = tlScene.SceneVM;
 				ChangeCurrentSceneVM(tlViewmodel);
 	
 				break;
 		
 			case PageName.CALENDAR:
-				var clScene = new CalendarScene(_backend.ReadOnlyData, _keybindManager);
+				var clScene = new CalendarScene(
+					_backend.ReadOnlyData, 
+					_keybindAPI,
+					_focusAPI!
+				);
+
 				var clViewmodel = clScene.SceneVM;
 				ChangeCurrentSceneVM(clViewmodel);
 

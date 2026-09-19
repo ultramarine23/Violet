@@ -16,7 +16,6 @@ public class CalendarScene : SceneBase
 {
 	// --> 1: INTERNALS {r}
 	private readonly AppDataReadOnly _readOnlyData;
-	private readonly CalendarSAPI _sceneApi;
 
 	private readonly CalendarDependencies _dependencies;
 
@@ -26,14 +25,19 @@ public class CalendarScene : SceneBase
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public CalendarScene(AppDataReadOnly readOnlyData, KeybindManager keybindManager) : base(keybindManager)
+	public CalendarScene(
+		AppDataReadOnly readOnlyData, 
+		KeybindAPI keybindAPI,
+		FocusAPI focusAPI
+	) : base(keybindAPI, focusAPI)
 	{
 		_readOnlyData = readOnlyData;
-		_sceneApi = new CalendarSAPI(this);
 
 		_dependencies = new CalendarDependencies(
 			_readOnlyData, 
-			_sceneApi
+			_selectionAPI,
+			_focusAPI,
+			_keybindAPI
 		);
 
 		SceneVM = new CalendarSceneViewModel(_dependencies);

@@ -18,8 +18,8 @@ namespace Violet.Scenes;
 public class TasklistScene : SceneBase
 {
 	// --> 1: INTERNALS {r}
+	// _keybindAPI and _focusAPI reference in base class
 	private readonly AppDataReadOnly _readOnlyData;
-	private readonly TasklistSAPI _sceneApi;
 	private readonly TaskService _taskService;
 
 	private readonly TasklistDependencies _dependencies;
@@ -30,15 +30,21 @@ public class TasklistScene : SceneBase
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public TasklistScene(AppDataReadOnly readOnlyData, TaskService taskService, KeybindManager keybindManager) : base(keybindManager)
+	public TasklistScene(
+		AppDataReadOnly readOnlyData, 
+		TaskService taskService, 
+		KeybindAPI keybindAPI,
+		FocusAPI focusAPI
+	) : base(keybindAPI, focusAPI)
 	{
 		_readOnlyData = readOnlyData;
 		_taskService = taskService;
-		_sceneApi = new TasklistSAPI(this);
 
 		_dependencies = new TasklistDependencies(
 			_readOnlyData, 
-			_sceneApi, 
+			_selectionAPI,
+			_focusAPI,
+			_keybindAPI,
 			_taskService
 		);
 

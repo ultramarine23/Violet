@@ -46,6 +46,25 @@
                 <Setter Property="Background" Value="{DynamicResource DarkYellowBrush}" />
             </Style>
         </Style>
+
+		<Style Selector="Button.confirmButton">
+            <Setter Property="Background" Value="{DynamicResource ElevatedBrush}"/>
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+
+            <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource GreenBrush}" />
+            </Style>
+
+            <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource DarkGreenBrush}" />
+            </Style>
+
+            <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource DarkGreenBrush}" />
+            </Style>
+        </Style>
 	</UserControl.Styles>
 
 
@@ -74,6 +93,7 @@
 			<StackPanel Grid.Column="1" Grid.Row="0" Spacing="2">
 				<Border>
 					<TextBox
+						Name="Description"
 						Classes="standardBody"
 						VerticalAlignment="Top"
 						Margin="0 6"
@@ -137,6 +157,21 @@
 					Classes="editButton"
 					HorizontalAlignment="Stretch"
 					Command="{Binding StartEditCommand}"
+					IsVisible="{Binding ReadMode}"
+				>
+					<Svg 
+						Path="/Assets/Icons/ic--outline-edit.svg"
+						Width="20"
+						Height="20"
+						HorizontalAlignment="Center"
+					/>
+				</Button>
+
+				<Button
+					Classes="confirmButton"
+					HorizontalAlignment="Stretch"
+					Command="{Binding EndEditCommand}"
+					IsVisible="{Binding !ReadMode}"
 				>
 					<Svg 
 						Path="/Assets/Icons/ic--outline-edit.svg"

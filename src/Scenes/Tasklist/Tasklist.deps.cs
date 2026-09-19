@@ -14,18 +14,25 @@ public class TasklistDependencies
 {
 	// --> add more dependencies here {r}
 	public AppDataReadOnly ReadOnlyData { get; }
-	public TasklistSAPI SceneApi { get; }
+	public SelectionAPI SelectionApi { get; }
+	public FocusAPI FocusApi { get; }
+	public KeybindAPI KeybindApi { get; }
+	
 	public TaskService TaskService { get; }
 
 	
 	public TasklistDependencies(
 		AppDataReadOnly readOnlyData,
-		TasklistSAPI sceneApi,
+		SelectionAPI selectionApi,
+		FocusAPI focusApi,
+		KeybindAPI keybindApi,
 		TaskService taskService
 	)
 	{
 		ReadOnlyData = readOnlyData;
-		SceneApi = sceneApi;
+		SelectionApi = selectionApi;
+		FocusApi = focusApi;
+		KeybindApi = keybindApi;
 		TaskService = taskService;
 	}
 }
