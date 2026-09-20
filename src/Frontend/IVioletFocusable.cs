@@ -9,7 +9,7 @@ namespace Violet;
 */
 
 
-public interface IFocusable
+public interface IVioletFocusable
 {
 	public Control FocusDestination { get; }
 }

@@ -5,7 +5,7 @@ using Violet.ViewModels;
 
 namespace Violet.Views;
 
-public partial class TaskView : UserControl, IFocusable
+public partial class TaskView : UserControl, IVioletFocusable
 {
     public Control FocusDestination { get; }
 

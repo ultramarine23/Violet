@@ -6,6 +6,7 @@
 	x:DataType="vm:TaskViewModel"
 	VerticalAlignment="Center"
 	HorizontalAlignment="Stretch"
+	KeyboardNavigation.TabNavigation="Cycle"
 >
 	<!-- STYLES {gray} -->
     <UserControl.Styles>

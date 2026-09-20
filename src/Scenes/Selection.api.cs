@@ -10,7 +10,7 @@ public class SelectionAPI
 	}
 
 	// API-accessible methods {r}
-	public void GrabSelection(ISelectionObject target)
+	public void GrabSelection(IVioletSelectable target)
 	{
 		_manager.GrabSelection(target);
 	}
