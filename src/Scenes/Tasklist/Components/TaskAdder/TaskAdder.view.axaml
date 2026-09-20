@@ -13,7 +13,7 @@
         VerticalAlignment="Stretch"
         HorizontalAlignment="Stretch"
 	>
-        <Grid ColumnDefinitions="* 48" RowDefinitions="32" ColumnSpacing="5">
+        <Grid ColumnDefinitions="* 48" RowDefinitions="32 32" ColumnSpacing="5" RowSpacing="5" Margin="10">
             <TextBox
                 Grid.Column="0"
                 Grid.Row="0"
@@ -33,6 +33,34 @@
                 Content="{SvgImage /Assets/Icons/ic--outline-add.svg}"
                 Command="{Binding AddTaskCommand}"
             />
+
+            <Grid ColumnDefinitions="* * * *" Grid.Column="0" Grid.Row="1" ColumnSpacing="5">
+                <CalendarDatePicker
+                    Grid.Column="0"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    DisplayDateStart="{Binding DateNow}"
+                    SelectedDate="{Binding NewDateDue}"
+                    PlaceholderText="When is it due?"
+                />
+
+                <!-- <TimePicker
+                    Grid.Column="1"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    SelectedTime="{Binding NewTimeDue}"
+                    MinuteIncrement="30"
+                /> -->
+
+                <TextBox
+                    Grid.Column="1"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    IsReadOnly="True"
+                    PlaceholderText="What time due?"
+                />
+
+            </Grid>
         </Grid>
     </Border>
 

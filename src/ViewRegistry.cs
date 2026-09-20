@@ -5,6 +5,15 @@ using Violet.ViewModels;
 
 namespace Violet;
 
+/* {#fff}
+{ CLASS DESCRIPTION }
+	A dictonary wrapper that keeps track of all ViewModel -> View mappings.
+
+	Owned by the App, as one of the Three Holy Relics (with Backend & Presenter).
+	Passed down into the Presenter -> FocusManager.
+*/
+
+
 public class ViewRegistry
 {
 	private Dictionary<ViewModelBase, Control> _allViews;

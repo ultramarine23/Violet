@@ -16,6 +16,14 @@ public partial class TaskAdderViewModel : ViewModelBase
 	// --> 2: PROPERTIES {y}
 	[ObservableProperty]
 	private string _newDescription;
+
+	[ObservableProperty]
+	private DateTime? _newDateDue;
+
+	[ObservableProperty]
+	private TimeSpan _newTimeDue;
+
+	public DateTime DateNow => DateTime.Now;
 	
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
@@ -24,6 +32,8 @@ public partial class TaskAdderViewModel : ViewModelBase
 		_dependencies = dependencies;
 
 		NewDescription = "";
+		NewDateDue = null;
+		NewTimeDue = new TimeSpan();
 	}
 
 	public override void Dispose()
@@ -36,14 +46,19 @@ public partial class TaskAdderViewModel : ViewModelBase
 	[RelayCommand]
 	public void AddTask()
 	{
-		var taskData = new TaskData(
-			NewDescription,
-			DateTime.Now.AddDays(3),
-			TimeSpan.FromHours(6)
-		);
+		// compiler keeps crying that NewDateDue isnt a DateTime, even
+		// when i introduce a null guard -.- im probs just stupid L bozo
+		if (NewDateDue is DateTime dateDue)
+		{
+			var taskData = new TaskData(
+				NewDescription,
+				dateDue.Add(NewTimeDue),
+				TimeSpan.FromHours(6)
+			);
 
-		var newTask = new Task(taskData);
-		_dependencies.TaskService.AddTask(newTask);
+			var newTask = new Task(taskData);
+			_dependencies.TaskService.AddTask(newTask);
+		}
 	}
 
 

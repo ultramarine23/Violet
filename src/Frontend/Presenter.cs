@@ -29,7 +29,7 @@ public class Presenter
 	private const PageName InitialPage = PageName.TASKLIST;
 	
 	private readonly Backend _backend;
-	private ViewRegistry? _viewRegistry; // largely only here to be passed to focus controller
+	private ViewRegistry _viewRegistry; // Presenter owns the ViewRegistry
 
 	// presenter directly owns both main window and main vm; main window
 	// DOES NOT own main vm: they are synced together by the presenter

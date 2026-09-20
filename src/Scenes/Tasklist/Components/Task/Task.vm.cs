@@ -46,8 +46,6 @@ public partial class TaskViewModel : ViewModelBase
 	public string EstTimeString => FormatEstimatedTimeString();
 	public bool IsMarkedDone => CurrentState == TaskState.COMPLETED;
 
-	public event Action? EditStateEnded;
-
 
 	// --> 3: INIT & SYNCHRONIZAION {g}
 	public TaskViewModel(TasklistDependencies dependencies, Task task)

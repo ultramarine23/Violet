@@ -5,13 +5,22 @@ using Violet.ViewModels;
 
 namespace Violet;
 
+/* {#fff}
+{ CLASS DESCRIPTION }
+	A Presenter-level manager that wraps the FocusManager. 
+	
+	Unlike KeybindManager, FocusManager is constructed later on, after the 
+	creation of the MainWindow, since it operates with the window's FocusManager. 
+
+	Passed as a dependency onto Scenes, then onto its VMs.
+*/
+
+
 public class FocusController
 {
 	private IFocusManager _focusManager;
 	private ViewRegistry _viewRegistry;
 
-	public event Action? SelectionChanged;
-	
 	public FocusController(IFocusManager focusManager, ViewRegistry viewRegistry)
 	{
 		_focusManager = focusManager;
@@ -22,6 +31,7 @@ public class FocusController
 	{
 		IInputElement? targetControl = _viewRegistry.Lookup(vm);
 
+		// bro why is c# static typing so annoying pmo sia
 		if ((targetControl != null) && (targetControl is IFocusable focusable))
 		{			
 			focusable.FocusDestination.Focus();

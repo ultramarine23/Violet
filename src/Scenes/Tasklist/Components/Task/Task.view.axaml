@@ -174,7 +174,7 @@
 					IsVisible="{Binding !ReadMode}"
 				>
 					<Svg 
-						Path="/Assets/Icons/ic--outline-edit.svg"
+						Path="/Assets/Icons/ic--outline-check.svg"
 						Width="20"
 						Height="20"
 						HorizontalAlignment="Center"
