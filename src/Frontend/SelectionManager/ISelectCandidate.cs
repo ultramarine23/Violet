@@ -10,12 +10,12 @@ namespace Violet;
 */
 
 
-public interface IVioletSelectable
+public interface ISelectCandidate
 {
-	public IVioletSelectable? LeftNeighbor { get; set; }
-	public IVioletSelectable? RightNeighbor { get; set; }
-	public IVioletSelectable? BottomNeighbor { get; set; }
-	public IVioletSelectable? TopNeighbor { get; set; }
+	public ISelectCandidate? LeftNeighbor { get; set; }
+	public ISelectCandidate? RightNeighbor { get; set; }
+	public ISelectCandidate? BottomNeighbor { get; set; }
+	public ISelectCandidate? TopNeighbor { get; set; }
 
 	// a list of keybinds that are registered upon being selected
 	public Dictionary<KeyGesture, Action> SelectedKeybinds { get; set; }

@@ -32,7 +32,7 @@ public class FocusController
 		IInputElement? targetControl = _viewRegistry.Lookup(vm);
 
 		// bro why is c# static typing so annoying pmo sia
-		if ((targetControl != null) && (targetControl is IVioletFocusable focusable))
+		if ((targetControl != null) && (targetControl is IFocusCandidate focusable))
 		{			
 			focusable.FocusDestination.Focus();
 		}

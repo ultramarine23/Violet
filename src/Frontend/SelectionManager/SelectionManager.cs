@@ -19,7 +19,7 @@ public class SelectionManager
 {
 	private KeybindAPI _keybindAPI;
 	
-	public IVioletSelectable? SelectedObject { get; private set; }
+	public ISelectCandidate? SelectedObject { get; private set; }
 
 	public event Action? SelectionChanged;
 	
@@ -29,7 +29,7 @@ public class SelectionManager
 		SelectedObject = null;
 	}
 
-	public void GrabSelection(IVioletSelectable target)
+	public void GrabSelection(ISelectCandidate target)
 	{
 		SelectedObject = target;
 		SelectionChanged?.Invoke();
