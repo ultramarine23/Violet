@@ -24,6 +24,10 @@ public partial class TaskAdderViewModel : ViewModelBase
 	private TimeSpan _newTimeDue;
 
 	public DateTime DateNow => DateTime.Now;
+
+	public TimeSelectorViewModel TimeSelectorVM { get; }
+	public DateSelectorViewModel DateSelectorVM { get; }
+	public TimespanSelectorViewModel TimespanSelectorVM { get; }
 	
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
@@ -34,6 +38,10 @@ public partial class TaskAdderViewModel : ViewModelBase
 		NewDescription = "";
 		NewDateDue = null;
 		NewTimeDue = new TimeSpan();
+
+		TimeSelectorVM = new TimeSelectorViewModel();
+		DateSelectorVM = new DateSelectorViewModel();
+		TimespanSelectorVM = new TimespanSelectorViewModel();
 	}
 
 	public override void Dispose()

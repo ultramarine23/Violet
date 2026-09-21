@@ -15,14 +15,15 @@
 	>
         <Grid ColumnDefinitions="* 48" RowDefinitions="32 32" ColumnSpacing="5" RowSpacing="5" Margin="10">
             <TextBox
+                Classes="purpleHighlight"
                 Grid.Column="0"
                 Grid.Row="0"
                 PlaceholderText="Enter task description..."
-                PlaceholderForeground="{DynamicResource ForegroundBrush}"
                 Text="{Binding NewDescription}"
                 VerticalAlignment="Stretch"
                 HorizontalAlignment="Stretch"
                 VerticalContentAlignment="Center"
+                TabIndex="10"
             />
 
             <Button
@@ -35,13 +36,11 @@
             />
 
             <Grid ColumnDefinitions="* * * *" Grid.Column="0" Grid.Row="1" ColumnSpacing="5">
-                <CalendarDatePicker
+                <ContentControl
                     Grid.Column="0"
                     VerticalAlignment="Stretch"
                     HorizontalAlignment="Stretch"
-                    DisplayDateStart="{Binding DateNow}"
-                    SelectedDate="{Binding NewDateDue}"
-                    PlaceholderText="When is it due?"
+                    Content="{Binding DateSelectorVM}"
                 />
 
                 <!-- <TimePicker
@@ -52,12 +51,18 @@
                     MinuteIncrement="30"
                 /> -->
 
-                <TextBox
+                <ContentControl
                     Grid.Column="1"
                     VerticalAlignment="Stretch"
                     HorizontalAlignment="Stretch"
-                    IsReadOnly="True"
-                    PlaceholderText="What time due?"
+                    Content="{Binding TimeSelectorVM}"
+                />
+
+                <ContentControl
+                    Grid.Column="3"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    Content="{Binding TimespanSelectorVM}"
                 />
 
             </Grid>

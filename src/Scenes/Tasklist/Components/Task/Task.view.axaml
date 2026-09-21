@@ -95,7 +95,7 @@
 				<Border>
 					<TextBox
 						Name="Description"
-						Classes="standardBody"
+						Classes="standardBox"
 						VerticalAlignment="Top"
 						Margin="0 6"
 						Text="{Binding Description}"

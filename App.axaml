@@ -174,7 +174,27 @@
 
 
         <!-- TEXTBOX STYLES {g} -->
-        <Style Selector="TextBox.standardBody">
+        <Style Selector="TextBox.purpleHighlight">
+            <Setter Property="Background" Value="{DynamicResource MidgroundBrush}"/>
+
+            <Style Selector="^:pointerover /template/ Border#PART_BorderElement">
+                <Setter Property="Background" Value="{DynamicResource ElevatedBrush}" />
+            </Style>
+
+            <Style Selector="^:pressed /template/ Border#PART_BorderElement">
+                <Setter Property="Background" Value="{DynamicResource AccentPressedBrush}" />
+            </Style>
+
+            <Style Selector="^:focus /template/ Border#PART_BorderElement">
+                <Setter Property="Background" Value="{DynamicResource AccentPressedBrush}" />
+            </Style>
+
+            <Style Selector="^:disabled /template/ Border#PART_BorderElement">
+                <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
+            </Style>           
+        </Style>
+
+        <Style Selector="TextBox.standardBox">
             <Setter Property="Foreground" Value="{DynamicResource SecondaryText}" />
             <Setter Property="FontSize" Value="{StaticResource BodyFont}" />
 
@@ -187,7 +207,7 @@
             <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
 
-        <Style Selector="TextBox.muteBody">
+        <Style Selector="TextBox.muteBox">
             <Setter Property="Foreground" Value="{DynamicResource SecondaryText}" />
             <Setter Property="FontSize" Value="{StaticResource BodyFont}" />
             <Setter Property="LineHeight" Value="{StaticResource BodyFont}" />
@@ -201,7 +221,6 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />
         </Style>
-
 
 
     </Application.Styles>

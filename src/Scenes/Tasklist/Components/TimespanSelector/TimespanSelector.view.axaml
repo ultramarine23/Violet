@@ -2,8 +2,8 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:vm="using:Violet.ViewModels"
-	x:Class="Violet.Views.TimeSelectorView"
-	x:DataType="vm:TimeSelectorViewModel"
+	x:Class="Violet.Views.TimespanSelectorView"
+	x:DataType="vm:TimespanSelectorViewModel"
 	VerticalAlignment="Stretch"
 	HorizontalAlignment="Stretch"
 >
@@ -14,7 +14,7 @@
 			VerticalAlignment="Stretch"
 			HorizontalAlignment="Stretch"
 			TextAlignment="Center"
-			Text="{Binding TimeSelectedString}"
+			Text="{Binding TimespanSelectedString}"
 			IsReadOnly="True"
 			CornerRadius="4"
 			CaretBrush="{DynamicResource AccentPressedBrush}"		
@@ -22,7 +22,6 @@
 		/>
 
 		<Button
-			Classes="standardButton"
 			ZIndex="2"
 			VerticalAlignment="Stretch"
 			HorizontalAlignment="Stretch"
@@ -33,7 +32,6 @@
 			Focusable="False"
 		/>
 	</Grid>
-	
 
 	
 </UserControl>

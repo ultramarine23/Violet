@@ -4,7 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Violet.ViewModels;
 
-public partial class TimeSelectorViewModel : ViewModelBase
+public partial class DateSelectorViewModel : ViewModelBase
 {
 	// --> 1: INTERNALS {r}
 	// this is a TRUE COMPONENT, therefore it doesnt have any dependencies
@@ -12,16 +12,16 @@ public partial class TimeSelectorViewModel : ViewModelBase
 
 	// --> 2: PROPERTIES {y}
 	[ObservableProperty]
-	[NotifyPropertyChangedFor(nameof(TimeSelectedString))]
-	private TimeOnly _timeSelected;
+	[NotifyPropertyChangedFor(nameof(DateSelectedString))]
+	private DateOnly _dateSelected;
 
-	public string TimeSelectedString => TimeSelected.ToShortTimeString();
+	public string DateSelectedString => DateSelected.ToString("ddd, MMM dd");
 
 
 	// --> 3: CONSTRUCTORS AND DESTRUCTORS {g}
-	public TimeSelectorViewModel()
+	public DateSelectorViewModel()
 	{
-		TimeSelected = TimeOnly.Parse("12:00AM");
+		DateSelected = DateOnly.FromDateTime(DateTime.Now);
 	}
 
 	public override void Dispose()
@@ -35,7 +35,7 @@ public partial class TimeSelectorViewModel : ViewModelBase
 
 
 	// --> 5: INTERNAL METHODS {v}
-	
+	//
 
 
 }
